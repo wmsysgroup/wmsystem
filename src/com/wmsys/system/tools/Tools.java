@@ -19,7 +19,7 @@ public class Tools
 {
 	
 
-    //构造子
+    //私有化构造函数
 	private Tools(){}
 	
 	
