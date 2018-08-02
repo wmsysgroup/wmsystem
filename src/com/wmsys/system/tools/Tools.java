@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.mywq.util.LabelValueBean;
 
@@ -20,6 +21,59 @@ public class Tools
 
     //构造子
 	private Tools(){}
+	
+	
+	/**
+	 * 生成清单编号
+	 * <p>Title: nowi</p>  
+	 * Description: </p>  
+	 * @param type 清单类型 用{A,B,C,D}
+	 * @return
+	 */
+	public static String listno(String type)
+	{
+		int me=UUID.randomUUID().toString().replace("-", "").hashCode();
+        if(me>0)
+        {
+        	return type+"1"+me;
+        }
+        else
+        {
+        	
+        	return type+"2"+Math.abs(me);
+        }
+	}
+	
+	/**
+	 * 大米编号生成   
+	 * <p>Title: mealsno</p>  
+	 * Description: </p>  
+	 * @return
+	 */
+	public static String mealsno() 
+	{
+		PreparedStatement pstm=null;
+		ResultSet rs=null;
+		int m=0;
+		String sql="select COUNT(test) from meals";
+		try {
+			pstm=DBUtils.prepareStatement(sql);
+			rs=pstm.executeQuery();
+			if(rs.next())
+			{
+				m=rs.getInt(1);
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		String s="A"+String.format("%04d",m+1);
+		
+		DBUtils.close(rs);
+		DBUtils.close(pstm);
+		DBUtils.close();
+		return s;
+	}
 	
 	
 	//**************************BEGIN MD5*************************************
