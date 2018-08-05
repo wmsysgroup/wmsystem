@@ -45,7 +45,7 @@ public class DepotInquireServices {
 				if(Tools.isNotNull(this.get("bgname"))) 
 				{
 					sql.append(" and b.bgname like ?");
-					paramList.add(this.get("%bgname%"));
+					paramList.add("%"+this.get("bgname")+"%");
 				}
 				if(Tools.isNotNull(this.get("innumber"))) 
 				{
