@@ -37,9 +37,11 @@ public class DepotInquireServices {
 				ResultSet rs=null;
 				//¶¨Òåsql
 				StringBuilder sql = new StringBuilder()
-						.append("select b.bgname,i.innumber,i.wnumber,b.bglevel,b.bgtype,b.bgspec,m.number,i.indate,i.inprincipal,i.remarks")
-						.append(" from basicGoods b,InboundList i,margin m")
-						.append(" where i.innumber = b.bgnumber and i.inid=m.indid");
+						.append("select b.bgname,i.innumber,s4.sysvalue wnumber,s1.sysvalue bglevel,s2.sysvalue bgtype,s3.sysvalue bgspec,m.number,i.indate,i.inprincipal,i.remarks")
+						.append(" from basicGoods b,InboundList i,margin m,syscode s1,syscode s2,syscode s3,syscode s4")
+						.append(" where i.innumber = b.bgnumber and i.inid=m.indid")
+						.append(" and b.bglevel=s1.syscode and b.bgtype =s2.syscode and b.bgspec = s3.syscode and i.wnumber = s4.syscode")
+						.append(" and s1.sysname = 'bglevel' and s2.sysname = 'bgtype' and s3.sysname = 'bgspec' and s4.sysname = 'wnumber'");
 				if(Tools.isNotNull(this.get("bgname"))) 
 				{
 					sql.append(" and b.bgname like ?");
@@ -74,12 +76,12 @@ public class DepotInquireServices {
 				}
 				if(Tools.isNotNull(this.get("bdate"))) 
 				{
-					sql.append(" and sdate>?");
+					sql.append(" and i.indate>?");
 					paramList.add(this.get("bdate"));
 				}
 				if(Tools.isNotNull(this.get("edate"))) 
 				{
-					sql.append(" and sdate<?");
+					sql.append(" and i.indate<?");
 					paramList.add(this.get("edate"));
 				}
 				
