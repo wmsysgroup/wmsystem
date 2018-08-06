@@ -16,7 +16,7 @@
 
 ${msg}
 
-	<form action = "<%=path %>/AddRiceServlet" method="get">
+	<form action = "<%=path %>/AddRiceServlet" method="post">
         <table border="1" style="border-collapse: collapse">
             <tr>
                 <td>货物名称</td>
