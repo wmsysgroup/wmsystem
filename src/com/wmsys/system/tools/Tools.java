@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mywq.util.LabelValueBean;
 
 import com.wmsys.system.db.DBUtils;
@@ -22,6 +24,16 @@ public class Tools
     //私有化构造函数
 	private Tools(){}
 	
+
+	 /**
+	  * 空值判断
+	 * @param args
+	 * @return
+	 */
+	public static final boolean isNotNull(final Object args)
+	    {
+	    	return args!=null && !args.equals("");
+	    }
 	
 	/**
 	 * 生成清单编号
@@ -55,7 +67,7 @@ public class Tools
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
 		int m=0;
-		String sql="select COUNT(test) from meals";
+		String sql="select COUNT(bgnumber) from basicGoods";
 		try {
 			pstm=DBUtils.prepareStatement(sql);
 			rs=pstm.executeQuery();
@@ -71,7 +83,7 @@ public class Tools
 		
 		DBUtils.close(rs);
 		DBUtils.close(pstm);
-		DBUtils.close();
+		
 		return s;
 	}
 	
@@ -151,7 +163,7 @@ public class Tools
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<LabelValueBean> getOptions(final String fname)throws Exception
+	public static List<LabelValueBean> getOptions(final String sysname)throws Exception
 	{
 		//1.定义JDBC接口
 		PreparedStatement pstm=null;
@@ -160,12 +172,12 @@ public class Tools
 		{
 			//2.定义SQL语句
 			StringBuilder sql=new StringBuilder()
-					.append("select a.fvalue,a.fcode")
+					.append("select a.sysvalue,a.syscode")
 					.append("  from syscode a")
-					.append(" where a.fname=?")
+					.append(" where a.sysname=?")
 			;
 			pstm=DBUtils.prepareStatement(sql.toString());
-			pstm.setObject(1, fname);
+			pstm.setObject(1, sysname);
 			rs=pstm.executeQuery();
 			
 			List<LabelValueBean> opts=new ArrayList<>();
@@ -183,6 +195,7 @@ public class Tools
 			DBUtils.close(pstm);
 		}
 	}
+	
 	
 	
 	
