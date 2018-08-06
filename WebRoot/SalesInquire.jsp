@@ -21,44 +21,55 @@ ${msg}
         <table border="1" style="border-collapse: collapse">
         	  <tr>
                 <td>销售编号</td>
-                <td><input type="text" name="sid"></td>
+                <td>
+                	<e:text name="sid"/>
+                </td>
                 <td>出库编号</td>
                 <td>
-                	<input type="text" name="outid">
+                	<e:text name="outid"/>
                 </td>
             </tr>
             <tr>
                 <td>货物编号</td>
-                <td><input type="text" name="snumber"></td>
+                <td>
+                	<e:text name="snumber"/>
+                </td>
                 <td>负责人</td>
                 <td>
-                	<input type="text" name="sprincipal">
+                	<e:text name="sprincipal"/>
+                	
                 </td>
             </tr>
             <tr>
                 <td>购买方</td>
                 <td>
-                   <input type="text" name="spurchaser">
+                	<e:text name="spurchaser"/>
+                   
                 </td>
                 <td>单价</td>
-                <td><input type="number" name="sprice"></td>
+                <td>
+                	<e:text name="sprice"/>
+                	
+                </td>
             </tr>
             <tr>
                 <td>起始时间</td>
                 <td>
-                    <input type="date" name="bdate">
+                	<e:date name="bdate"/>
+                   
                 </td>
                 <td>截止时间</td>
                 <td>
-                    <input type="date" name="edate"> 
+                	<e:date name="edate"/>
+                   
                 </td>
             </tr>
         </table>
         <input type="submit" value="查询">
         
-        <table border="1" width="95%" align="center" style="border-collapse: collapse">
+        <table border="1" style="border-collapse: collapse">
 		   <tr>
-		     <td></td>
+		     <td>序号</td>
 		     <td>销售编号</td>
 		     <td>出库编号</td>
 		     <td>货物编号</td>

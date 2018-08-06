@@ -2,6 +2,7 @@ package com.wmsys.servlet.manager;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mywq.util.LabelValueBean;
 
+import com.wmsys.services.manager.MenuServices;
 import com.wmsys.system.tools.Tools;
 
 
@@ -19,28 +21,34 @@ public class MenuServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
+		MenuServices services = new MenuServices();
+		
 		Object path = request.getAttribute("path");
 		String toPath = "/DepotInquire.jsp";
 		if(path!=null && !path.equals(""))
 		{
 			toPath=path.toString();
 		}
+		
 		try 
 		{
-			List<LabelValueBean> levelMenu = Tools.getOptions("bglevel");
+			Map<String,List<LabelValueBean>> allList = services.getMenuList();
+			
+			List<LabelValueBean> levelMenu = allList.get("bglevel");
+			List<LabelValueBean> specMenu = allList.get("bgspec");
+			List<LabelValueBean> typeMenu = allList.get("bgtype");
+			List<LabelValueBean> expMenu = allList.get("bgexp");
+			List<LabelValueBean> wMenu = allList.get("wnumber");
+			
+			//this.getServletContext().setAttribute("levelMenu", levelMenu);
+			//request.getSession().setAttribute("levelMenu", levelMenu);
 			request.setAttribute("levelMenu", levelMenu);
-			
-			List<LabelValueBean> specMenu = Tools.getOptions("bgspec");
 			request.setAttribute("specMenu", specMenu);
-			
-			List<LabelValueBean> typeMenu = Tools.getOptions("bgtype");
 			request.setAttribute("typeMenu", typeMenu);
-			
-			List<LabelValueBean> expMenu = Tools.getOptions("bgexp");
 			request.setAttribute("expMenu", expMenu);
-			
-			List<LabelValueBean> wMenu = Tools.getOptions("wnumber");
 			request.setAttribute("wMenu", wMenu);
+			
 		} 
 		catch (Exception e) {
 			
@@ -48,7 +56,7 @@ public class MenuServlet extends HttpServlet {
 		}
 		request.getRequestDispatcher(toPath).forward(request, response);
 	}
-
+	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

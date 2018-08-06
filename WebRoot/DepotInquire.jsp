@@ -13,20 +13,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+
 <body>
 
 ${msg}
 
-	<form action="<%=path %>/DepotInquireServlet" method="get">
+	<form id="form" action="<%=path %>/DepotInquireServlet" method="get">
         <table border="1" style="border-collapse: collapse">
         	  <tr>
                 <td>货物名称</td>
                 <td>
-                	<input type="text" name="bgname">
+                	<e:text name="bgname"/>
                 </td>
                 <td>货物编号</td>
                 <td>
-                	<input type="text" name="innumber">
+                	<e:text name="innumber"/>
                 </td>
             </tr>
             <tr>
@@ -52,19 +54,21 @@ ${msg}
             <tr>
                 <td>起始时间</td>
                 <td>
-                    <input type="date" name="bdate">
+                	<e:date name="bdate"/>
+          
                 </td>
                 <td>截止时间</td>
                 <td>
-                    <input type="date" name="edate"> 
+                	<e:date name="edate"/>
+                    
                 </td>
             </tr>
         </table>
-        <input type="submit">
+        <input type="submit" value="查询">
         
-        <table border="1" width="95%" align="center" style="border-collapse: collapse">
+        <table border="1" style="border-collapse: collapse">
 		   <tr>
-		     <td></td>
+		     <td>序号</td>
 		     <td>货物名称</td>
 		     <td>货物编号</td>
 		     <td>仓库编号</td>
@@ -113,6 +117,7 @@ ${msg}
 		     </c:otherwise>
 		   </c:choose>
 		 </table>
+
     </form>
 </body>
 </html>
