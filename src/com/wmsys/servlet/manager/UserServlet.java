@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.neusoft.services.UserImpl;
+import com.wmsys.services.manager.UserImpl;
 
 /**
  * Servlet implementation class UserServlet
@@ -28,9 +28,9 @@ public class UserServlet extends HttpServlet {
 			final UserImpl services=new UserImpl();
 			//dto
 			services.setMapDto(this.createDto(request));
-			//ÅĞ¶Ï
+			//åˆ¤æ–­
 			
-			String msg = services.modify()?"ĞŞ¸Ä³É¹¦":"ĞŞ¸ÄÊ§°Ü";
+			String msg = services.modify()?"ä¿®æ”¹æˆåŠŸ":"ä¿®æ”¹å¤±è´¥";
 			
 				request.setAttribute("msg", msg);
 			
@@ -45,22 +45,22 @@ public class UserServlet extends HttpServlet {
 		
 		this.doGet(request, response);
 	}
-	//»ñÈ¡dto
+	//è·å–dto
 		private final Map<String,Object> createDto(HttpServletRequest request)
 	  {
 			Map<String,String[]> tem=request.getParameterMap();
-			//1.»ñÈ¡ËùÓĞµÄ¼üÖµ¶Ô¼¯ºÏ(EntrySet)
+			//1.è·å–æ‰€æœ‰çš„é”®å€¼å¯¹é›†åˆ(EntrySet)
 			Set<Entry<String,String[]>> entrySet=tem.entrySet();
-			//¶¨Òå×Ö·û´®ÊıÖµ±íÊ¾EntryµÄvalue
+			//å®šä¹‰å­—ç¬¦ä¸²æ•°å€¼è¡¨ç¤ºEntryçš„value
 			String value[]=null;
-			//ÊµÀı»¯DTO
+			//å®ä¾‹åŒ–DTO
 			Map<String,Object> dto=new HashMap<>();
-			//Ñ­»·»ñÈ¡Ã¿¸ö¼üÖµ¶Ô
+			//å¾ªç¯è·å–æ¯ä¸ªé”®å€¼å¯¹
 			for(Entry<String,String[]>  entry:entrySet)
 			{
-				//»ñÈ¡¼üÖµ¶ÔµÄvalue²¿·Ö
+				//è·å–é”®å€¼å¯¹çš„valueéƒ¨åˆ†
 				value=entry.getValue();
-				//ÅĞ¶ÏvalueÊı×éµÄ³¤¶È,Èç¹ûÊÇ1,±íÊ¾¸Ã¿Ø¼şÊÇ·Çcheckbox,Èç¹û³¤¶È´óÓÚ1,±íÊ¾checkbox
+				//åˆ¤æ–­valueæ•°ç»„çš„é•¿åº¦,å¦‚æœæ˜¯1,è¡¨ç¤ºè¯¥æ§ä»¶æ˜¯écheckbox,å¦‚æœé•¿åº¦å¤§äº1,è¡¨ç¤ºcheckbox
 				if(value.length==1)
 				{
 					dto.put(entry.getKey(), value[0]);
