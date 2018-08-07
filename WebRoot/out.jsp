@@ -10,20 +10,17 @@
 <head>
 
 <title>Insert title here</title>
-<%--
+
 <script type="text/javascript">
 function beforeSubmit(obj){		
-    obj = document.getElementsByName("idlist");
+    obj = document.getElementsByName("number");
 	var count=0;
-	alert(obj.length);
     for(k in obj){   	
         if(obj[k].checked){
-        	alert(4);
+        	count++;
         	 
         }      	
     }
-    
-    
     if(count==0)
     {
 		alert("请选中至少一个出库货物");
@@ -33,6 +30,7 @@ function beforeSubmit(obj){
 
 	}
 </script>
+
 <script type="text/javascript">
 function sumall(){		
     
@@ -46,7 +44,7 @@ function sumall(){
 
 	}
 </script>
---%>
+
 </head>
 
 	<body>
@@ -64,8 +62,8 @@ function sumall(){
     	 <c:when test="${rows!=null }">
 		     <c:forEach var="ins" items="${rows }" varStatus="vs">
 			<tr>
-				<td><input type="checkbox" name="idlist" value="${ins.inid}">
-					<input type="hidden" name="number" value="${ins.number}">
+				<td><input type="checkbox" name="number" value="${ins.number}" onclick="sumall()">
+					<input type="hidden"  name="idlist" value="${ins.inid}">
 					
 					</td>
 				<td width="100" align="center">${ins.inid} </td>
@@ -96,7 +94,7 @@ function sumall(){
 			
 		</table>
 		
-		<span>数量：</span><input id="ss" name="count" type="tel" value="">
+		<span>数量：</span><input id="ss" name="count" type="text" value="">
 		<br><br>
 		<input type="hidden" name="outnumber" value="${instad}">
 		<input type="submit" value="提交">
