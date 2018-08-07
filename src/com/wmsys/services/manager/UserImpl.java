@@ -2,8 +2,6 @@ package com.wmsys.services.manager;
 
 import java.util.Map;
 
-import com.wmsys.services.support.JdbcServicesSupport;
-
 /**
  * @author fire
  *
@@ -14,38 +12,38 @@ public final class UserImpl extends JdbcServicesSupport {
 	
 
 	/* 
-	 * ÈËÔ±²éÑ¯
+	 * äººå‘˜æŸ¥è¯¢
 	 * 
 	 * uname,udate,usex,utype,ustate,remarks
 	 * according account to get msg type of map 
-	 * Ê¹ÓÃÁËdtoÖĞµÄ uaccount
+	 * ä½¿ç”¨äº†dtoä¸­çš„ uaccount
 	 */
 	public final Map<String,String> findById()throws Exception
 	{
-		//1¶¨ÒåsqlÓï¾ä
+		//1å®šä¹‰sqlè¯­å¥
 		StringBuilder sql = new StringBuilder()
 				.append("select a.uname,a.udate,a.usex,a.utype,a.ustate,a.remarks")
 				.append("  from user a")
 				.append(" where a.uaccount=?");
-		//2»ñÈ¡Òª²éµÄÕË»§
+		//2è·å–è¦æŸ¥çš„è´¦æˆ·
 		Object args = this.get("uaccount");
-		//3µ÷ÓÃ¸¸Àà·½·¨·µ»Ømap
+		//3è°ƒç”¨çˆ¶ç±»æ–¹æ³•è¿”å›map
 		return this.queryForMap(sql.toString(), args);
 	}
 	
 	/**
-	 * ÈËÔ±ĞÅÏ¢ĞŞ¸Ä
-	 * @return ÊÇ·ñĞŞ¸Ä³É¹¦
+	 * äººå‘˜ä¿¡æ¯ä¿®æ”¹
+	 * @return æ˜¯å¦ä¿®æ”¹æˆåŠŸ
 	 * @throws Exception
 	 */
 	public final boolean modify() throws Exception
 	{
-		//1¹¹½¨sql
+		//1æ„å»ºsql
 		StringBuilder sql = new StringBuilder()
 				.append("update user ")
 				.append("   set uname=?,udate=?,usex=?,utype=?,ustate=?,remarks=?")
 				.append("where uaccount = ?");
-		//2»ñÈ¡²ÎÊıÁĞ±í
+		//2è·å–å‚æ•°åˆ—è¡¨
 		Object args[] = 
 			{
 				this.get("uname"),
@@ -56,12 +54,12 @@ public final class UserImpl extends JdbcServicesSupport {
 				this.get("remarks"),
 				this.get("uaccount")
 			};
-		//3·µ»ØĞŞ¸Ä½á¹û
+		//3è¿”å›ä¿®æ”¹ç»“æœ
 		return this.executeUpdate(sql.toString(), args)>0;
 				
 	}
 	/**
-	 * ÈËÔ±Ìí¼Ó
+	 * äººå‘˜æ·»åŠ 
 	 * @return
 	 * @throws Exception
 	 */
@@ -73,7 +71,7 @@ public final class UserImpl extends JdbcServicesSupport {
 				.append("          values (?,?,?,?,?,?,?,?)");
 		                                  // 1 2 3 4 5 6 7 8 
 		
-		//¹¹½¨²ÎÊıÊı×é
+		//æ„å»ºå‚æ•°æ•°ç»„
 		Object args[]= {
 				this.get("upassword"),
 				this.get("uname"),
@@ -88,7 +86,7 @@ public final class UserImpl extends JdbcServicesSupport {
 		return this.executeUpdate(sql.toString(), args)>0;
 	}
 //	/*
-//	 * »ñÈ¡Ëæ»úÕËºÅ 11Î»
+//	 * è·å–éšæœºè´¦å· 11ä½
 //	 * 
 //	 */
 //	private static final String getAccount()throws Exception
