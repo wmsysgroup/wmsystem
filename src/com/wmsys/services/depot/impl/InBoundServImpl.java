@@ -1,9 +1,16 @@
 package com.wmsys.services.depot.impl;
 
+import java.math.BigDecimal;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.wmsys.services.depot.support.JdbcServiceSupport;
+import com.wmsys.system.db.DBUtils;
 
 public class InBoundServImpl extends JdbcServiceSupport
 {
@@ -17,20 +24,20 @@ public class InBoundServImpl extends JdbcServiceSupport
 	 * 单一查询编号
 	 */
 	@Override
-	public Map<String, String> findByno(String arg) throws Exception 
+	public Map<String, Object> findByno() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("SELECT p.plid,b.bgname,p.plquantity,p.plsupplier,p.plnumber")
 				.append("  FROM purchaselist p,basicgoods b")
 				.append(" WHERE p.plid=?");
-		return this.query(sql.toString(), arg);
+		return this.query(sql.toString(), this.get("plid"));
 	}
 	
 	/**
-	 * 查询（状态）
+	 * 查询（状态） 1，尚未入库
 	 */
 	@Override
-	public List<Map<String, String>> findAll() throws Exception 
+	public List<Map<String, Object>> findAll() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("SELECT p.plid,b.bgname,p.plquantity,p.plsupplier")
@@ -40,7 +47,14 @@ public class InBoundServImpl extends JdbcServiceSupport
 	}
 	
 	
-	public List<Map<String, String>> beforeout()throws Exception
+	/**
+	 * 货物存量查询，出库
+	 * <p>Title: beforeout</p>  
+	 * Description: </p>  
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> beforeout()throws Exception
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("SELECT i.inid,b.bgname,m.number")
@@ -53,7 +67,88 @@ public class InBoundServImpl extends JdbcServiceSupport
 		return this.queryList(sql.toString(),args);
 	}
 	
+	/**
+	 * 库存余量查询 （indid）
+	 * <p>Title: findnum</p>  
+	 * Description: </p>  
+	 * @return
+	 * @throws Exception
+	 */
+	public BigDecimal findnum()throws Exception
+	{
+		String sql="select number from margin where indid=?";
+		Object arg=this.get("indid");
+		
+		PreparedStatement pstm=null;
+		ResultSet rs=null;
+		try
+		{
+			pstm=DBUtils.prepareStatement(sql);
+			pstm.setObject(1, arg);
+			rs=pstm.executeQuery();
+			
+			Map<String,Object> ins=null;
+			if(rs.next())
+			{
+				ResultSetMetaData rsmd=rs.getMetaData();
+				
+				//初始化ins装载数据
+				int count=rsmd.getColumnCount();
+				int initSize=((int)(count/0.75))+1;
+				ins=new HashMap<>(initSize);
+				
+				for(int i=1;i<=count;i++)
+				{
+					ins.put(rsmd.getColumnLabel(i).toLowerCase(), rs.getString(i));
+				}
+			 }
+			return rs.getBigDecimal("number");
+		}
+		
+		finally
+		{
+			DBUtils.close(rs);
+			DBUtils.close(pstm);
+		}
+	}
 	
+	public Date finddate()throws Exception
+	{
+		String sql="select indate from inboundlist where inid=?";
+		Object arg=this.get("inid");
+		
+		PreparedStatement pstm=null;
+		ResultSet rs=null;
+		try
+		{
+			pstm=DBUtils.prepareStatement(sql);
+			pstm.setObject(1, arg);
+			rs=pstm.executeQuery();
+			
+			Map<String,Object> ins=null;
+			if(rs.next())
+			{
+				ResultSetMetaData rsmd=rs.getMetaData();
+				
+				//初始化ins装载数据
+				int count=rsmd.getColumnCount();
+				int initSize=((int)(count/0.75))+1;
+				ins=new HashMap<>(initSize);
+				
+				for(int i=1;i<=count;i++)
+				{
+					ins.put(rsmd.getColumnLabel(i).toLowerCase(), rs.getString(i));
+				}
+			 }
+			return rs.getDate("indate");
+		}
+		
+		finally
+		{
+			DBUtils.close(rs);
+			DBUtils.close(pstm);
+		}
+	}
 	
 	/*************************************************************
 	 *              增加
@@ -77,7 +172,6 @@ public class InBoundServImpl extends JdbcServiceSupport
 				this.get("wnumber"),
 				this.get("remarks"),
 				};
-		System.out.println(args);
 		this.addMsg(sql.toString(), args);
 	}
 	
@@ -121,8 +215,8 @@ public class InBoundServImpl extends JdbcServiceSupport
 				this.get("outquantity"),
 				this.get("outdate"),
 				this.get("outprincipal"),
-				this.get("outstate"),
-				this.get("remarks"),
+				"1",
+				"",
 		};
 		
 		this.addMsg(sql.toString(), args);
@@ -142,7 +236,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 				.append("			 values(?,?)");
 		Object args[]={
 				this.get("indid"),
-				this.get("number")
+				this.get("inquantity")
 		};
 		this.addMsg(sql.toString(), args);
 	}
@@ -171,7 +265,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 	
 	
 	/**
-	 * 修改已入库进货清单状态
+	 * 修改已入库进货清单状态   0,已入库
 	 * <p>Title: updateSt</p>  
 	 * Description: </p>  
 	 * @throws Exception
@@ -186,4 +280,18 @@ public class InBoundServImpl extends JdbcServiceSupport
 		this.addMsg(sql, args);
 	}
 	
+	/**
+	 * 库中存量耗尽，删除
+	 * <p>Title: deleteMl</p>  
+	 * Description: </p>  
+	 * @throws Exception
+	 */
+	public void deleteMl()throws Exception
+	{
+		String sql="delete from margin where indid=?";
+		Object args[]={				
+				this.get("indid")
+		};
+		this.addMsg(sql, args);
+	}
 }

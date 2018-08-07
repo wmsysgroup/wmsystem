@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -34,6 +36,19 @@ public class Tools
 	    {
 	    	return args!=null && !args.equals("");
 	    }
+	
+	
+	/**
+	 * 获取当前时间
+	 * <p>Title: getDate</p>  
+	 * Description: </p>  
+	 * @return
+	 */
+	public static String getDate()
+	{
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return df.format(new Date());
+	}
 	
 	/**
 	 * 生成清单编号

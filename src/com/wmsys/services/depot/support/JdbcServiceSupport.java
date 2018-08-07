@@ -1,5 +1,6 @@
 package com.wmsys.services.depot.support;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -67,7 +68,7 @@ public abstract class JdbcServiceSupport implements BaseServices
 	 * @return
 	 * @throws Exception
 	 */
-	public Map<String,String> query(String sql,String args)throws Exception
+	public Map<String,Object> query(String sql,Object args)throws Exception
 	{
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
@@ -77,7 +78,7 @@ public abstract class JdbcServiceSupport implements BaseServices
 			pstm.setObject(1, args);
 			rs=pstm.executeQuery();
 			
-			Map<String,String> ins=null;
+			Map<String,Object> ins=null;
 			if(rs.next())
 			{
 				ResultSetMetaData rsmd=rs.getMetaData();
@@ -103,6 +104,8 @@ public abstract class JdbcServiceSupport implements BaseServices
 	}
 	
 	
+	
+	
 	/**
 	 * 批量查询结果方法
 	 * <p>Title: queryList</p>  
@@ -111,7 +114,7 @@ public abstract class JdbcServiceSupport implements BaseServices
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String,String>> queryList(String sql,Object arg)throws Exception
+	public List<Map<String,Object>> queryList(String sql,Object arg)throws Exception
 	{
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
@@ -129,9 +132,9 @@ public abstract class JdbcServiceSupport implements BaseServices
 			int initSize=((int)(count/0.75))+1;
 			
 			//定义List 装载查询结果
-			List<Map<String,String>> rows=new ArrayList<>();
+			List<Map<String,Object>> rows=new ArrayList<>();
 			//定义容器变量,装载每行数据
-			Map<String,String> ins=null;
+			Map<String,Object> ins=null;
 			
 			while(rs.next())
 			{
@@ -152,7 +155,7 @@ public abstract class JdbcServiceSupport implements BaseServices
 		}
 	}
 	
-	public List<Map<String,String>> queryList(String sql,Object...args)throws Exception
+	public List<Map<String,Object>> queryList(String sql,Object...args)throws Exception
 	{
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
@@ -175,9 +178,9 @@ public abstract class JdbcServiceSupport implements BaseServices
 			int initSize=((int)(count/0.75))+1;
 			
 			//定义List 装载查询结果
-			List<Map<String,String>> rows=new ArrayList<>();
+			List<Map<String,Object>> rows=new ArrayList<>();
 			//定义容器变量,装载每行数据
-			Map<String,String> ins=null;
+			Map<String,Object> ins=null;
 			
 			while(rs.next())
 			{
@@ -217,7 +220,7 @@ public abstract class JdbcServiceSupport implements BaseServices
 			{
 				pstm.setObject(index++, parm);
 			}
-			System.out.println(pstm.executeUpdate());
+			pstm.executeUpdate();
 		}
 		finally
 		{

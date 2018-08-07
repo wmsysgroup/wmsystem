@@ -5,12 +5,12 @@ import java.util.Map;
 
 public interface BaseServices 
 {
-	default Map<String,String> findByno(String arg)throws Exception
+	default Map<String,Object> findByno()throws Exception
 	{
 		return null;
 	}
 	
-	default List<Map<String,String>> findAll()throws Exception
+	default List<Map<String,Object>> findAll()throws Exception
 	{
 		return null;
 	}

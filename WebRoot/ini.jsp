@@ -12,7 +12,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-${msg}
 <form action="<%=path %>/InListServlet" method="post">
 	<table border="1" align="center">
 	

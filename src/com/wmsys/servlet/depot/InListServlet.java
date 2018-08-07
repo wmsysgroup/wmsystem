@@ -24,10 +24,8 @@ public class InListServlet extends HttpServlet
 	{
 		InBoundServImpl ibs=new InBoundServImpl();
 		try {
-			List<Map<String,String>> rows=ibs.findAll();
-			System.out.println(rows);
+			List<Map<String,Object>> rows=ibs.findAll();
 			request.setAttribute("rows", rows);
-			request.setAttribute("msg", "查询成功");
 		} catch (Exception e) {
 			request.setAttribute("msg", "查询失败");
 			e.printStackTrace();
