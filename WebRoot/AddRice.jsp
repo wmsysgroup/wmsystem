@@ -16,32 +16,34 @@
 
 ${msg}
 
-	<form action = "<%=path %>/AddRiceServlet" method="post">
+	<form action = "<%=path %>/AddRiceServlet" method="get">
         <table border="1" style="border-collapse: collapse">
             <tr>
                 <td>货物名称</td>
                 <td><input type="text" name="bgname" required="required"></td>
                 <td>品级</td>
                 <td>
-                	<e:select value="levelMenu" name="bglevel" />
+                	<e:select value=" 一级:1,二级:2,三级:3,四级:4" name="bglevel" />
                 </td>
             </tr>
             <tr>
                 <td>规格</td>
                 <td>
-                    <e:select value="specMenu" name="bgspec" />
+                    <e:select value="5kg/袋:1,10kg/袋:2,20kg/袋:3,25kg/袋:4,50kg/袋:5" name="bgspec" />
                 </td>
                 <td>单价</td>
-                <td><input type="number" name="bgprice" required="required"></td>
+                <td>
+                	<input type="text" name="bgprice" required="required">
+                </td>
             </tr>
             <tr>
                 <td>种类</td>
                 <td>
-                    <e:select value="typeMenu" name="bgtype" />
+                    <e:select value="粳米:1,五常米:2,香米:3,丝苗米:4,籼米:5" name="bgtype" />
                 </td>
                 <td>保质期</td>
                 <td>
-                   <e:select value="expMenu" name="bgexp" />
+                   <e:select value="6个月:1,12个月:2,18个月:3" name="bgexp" />
                 </td>
             </tr>
             <tr>

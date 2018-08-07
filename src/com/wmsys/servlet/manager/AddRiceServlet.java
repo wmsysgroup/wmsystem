@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.mywq.util.LabelValueBean;
 
 import com.wmsys.services.manager.AddRiceServices;
-import com.wmsys.services.manager.MenuServices;
+
 import com.wmsys.system.tools.Tools;
 
 
@@ -25,7 +25,7 @@ public class AddRiceServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		final MenuServices services01 = new MenuServices();
+
 		final AddRiceServices services = new AddRiceServices();
 		Map<String, String[]> tem = request.getParameterMap();
 		Set<Entry<String,String[]>> entrySet = tem.entrySet();
@@ -42,21 +42,7 @@ public class AddRiceServlet extends HttpServlet {
 
 		try 
 		{
-			Map<String,List<LabelValueBean>> allList = services01.getMenuList();
-			
-			List<LabelValueBean> levelMenu = allList.get("bglevel");
-			List<LabelValueBean> specMenu = allList.get("bgspec");
-			List<LabelValueBean> typeMenu = allList.get("bgtype");
-			List<LabelValueBean> expMenu = allList.get("bgexp");
-
-			
-
-			request.setAttribute("levelMenu", levelMenu);
-			request.setAttribute("specMenu", specMenu);
-			request.setAttribute("typeMenu", typeMenu);
-			request.setAttribute("expMenu", expMenu);
 	
-			
 			String msg = services.addRice()?"ÃÌº”≥…π¶":"Õ¯¬Áπ ’œ";
 			request.setAttribute("msg", msg);
 		}

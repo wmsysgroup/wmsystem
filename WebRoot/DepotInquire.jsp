@@ -19,7 +19,7 @@
 
 ${msg}
 
-	<form id="form" action="<%=path %>/DepotInquireServlet" method="get">
+	<form action="<%=path %>/DepotInquireServlet" method="get">
         <table border="1" style="border-collapse: collapse">
         	  <tr>
                 <td>货物名称</td>
@@ -34,21 +34,21 @@ ${msg}
             <tr>
                 <td>库房编号</td>
                 <td>
-                	<e:select value="wMenu" name="wnumber" header="true"/>
+                	<e:select value="1号仓库:1,2号仓库:2,3号仓库:3,4号仓库:4,5号仓库:5,6号仓库:6" name="wnumber" header="true"/>
                 </td>
                 <td>品级</td>
                 <td>
-                	<e:select value="levelMenu" name="bglevel" header="true"/>
+                	<e:select value="一级:1,二级:2,三级:3,四级:4" name="bglevel" header="true"/>
                 </td>
             </tr>
             <tr>
                 <td>种类</td>
                 <td>
-                    <e:select value="typeMenu" name="bgtype" header="true"/>
+                    <e:select value="粳米:1,五常米:2,香米:3,丝苗米:4,籼米:5" name="bgtype" header="true"/>
                 </td>
                 <td>规格</td>
                 <td>
-					 <e:select value="specMenu" name="bgspec" header="true"/>
+					 <e:select value="5kg/袋:1,10kg/袋:2,20kg/袋:3,25kg/袋:4,50kg/袋:5" name="bgspec" header="true"/>
 				</td>
             </tr>
             <tr>

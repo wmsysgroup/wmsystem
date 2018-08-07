@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.mywq.util.LabelValueBean;
 
 import com.wmsys.services.manager.DepotInquireServices;
-import com.wmsys.services.manager.MenuServices;
+
 import com.wmsys.system.tools.Tools;
 
 @WebServlet("/DepotInquireServlet")
@@ -24,7 +24,7 @@ public class DepotInquireServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		final MenuServices services01 = new MenuServices();
+
 		final DepotInquireServices services = new DepotInquireServices();
 		Map<String, String[]> tem = request.getParameterMap();
 		Set<Entry<String,String[]>> entrySet = tem.entrySet();
@@ -40,16 +40,6 @@ public class DepotInquireServlet extends HttpServlet {
 		
 		try 
 		{
-			Map<String,List<LabelValueBean>> allList = services01.getMenuList();
-			List<LabelValueBean> levelMenu = allList.get("bglevel");
-			List<LabelValueBean> specMenu = allList.get("bgspec");
-			List<LabelValueBean> typeMenu = allList.get("bgtype");
-			List<LabelValueBean> wMenu = allList.get("wnumber");
-			
-			request.setAttribute("levelMenu", levelMenu);
-			request.setAttribute("specMenu", specMenu);
-			request.setAttribute("typeMenu", typeMenu);
-			request.setAttribute("wMenu", wMenu);
 			
 			List<Map<String,String>> rows = services.salesInquire();
 			System.out.println(rows);
