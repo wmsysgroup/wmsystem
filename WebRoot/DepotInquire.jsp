@@ -38,7 +38,7 @@ ${msg}
                 </td>
                 <td>品级</td>
                 <td>
-                	<e:select value="一级:1,二级:2,三级:3,四级:4" name="bglevel" header="true"/>
+                	<e:select value="一级:1,二级:2,三级:3,特级:4" name="bglevel" header="true"/>
                 </td>
             </tr>
             <tr>
@@ -48,7 +48,7 @@ ${msg}
                 </td>
                 <td>规格</td>
                 <td>
-					 <e:select value="5kg/袋:1,10kg/袋:2,20kg/袋:3,25kg/袋:4,50kg/袋:5" name="bgspec" header="true"/>
+					 <e:select value="5kg/袋:1,10kg/袋:2" name="bgspec" header="true"/>
 				</td>
             </tr>
             <tr>
