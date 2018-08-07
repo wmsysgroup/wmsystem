@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.neusoft.services.RiceImpl;
+import com.wmsys.services.manager.RiceImpl;
 
 /**
  * Servlet implementation class RiceManagerServlet
@@ -24,13 +24,13 @@ public class RiceManagerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.setCharacterEncoding("UTF-8");
-		//ÊµÀı»¯Àà
+		//å®ä¾‹åŒ–ç±»
 		final RiceImpl services =new RiceImpl();
 		try 
 		{
-			//Ö²Èëdto
+			//æ¤å…¥dto
 			services.setMapDto(this.createDto(request));
-			//ºËĞÄ´¦Àí
+			//æ ¸å¿ƒå¤„ç†
 			this.excute(services, request);
 	
 		} catch (Exception e) 
@@ -47,10 +47,10 @@ public class RiceManagerServlet extends HttpServlet {
 		this.doGet(request, response);
 	}
 	
-	//²éÑ¯
+	//æŸ¥è¯¢
 	private final void excute(RiceImpl services,HttpServletRequest request)throws Exception
 	{
-		//ºËĞÄ´¦Àí
+		//æ ¸å¿ƒå¤„ç†
 		List<Map<String,String>> rows=services.query();
 		if(rows.size()>0)
 		{
@@ -58,7 +58,7 @@ public class RiceManagerServlet extends HttpServlet {
 		}
 		else
 		{
-			request.setAttribute("msg", "Ã»ÓĞ·ûºÏÌõ¼şµÄÊı¾İ!");
+			request.setAttribute("msg", "æ²¡æœ‰ç¬¦åˆæ¡ä»¶çš„æ•°æ®!");
 		}
 	}
 	
@@ -66,22 +66,22 @@ public class RiceManagerServlet extends HttpServlet {
 	
 	
 	
-	//»ñÈ¡dto
+	//è·å–dto
 	private final Map<String,Object> createDto(HttpServletRequest request)
     {
 		Map<String,String[]> tem=request.getParameterMap();
-		//1.»ñÈ¡ËùÓĞµÄ¼üÖµ¶Ô¼¯ºÏ(EntrySet)
+		//1.è·å–æ‰€æœ‰çš„é”®å€¼å¯¹é›†åˆ(EntrySet)
 		Set<Entry<String,String[]>> entrySet=tem.entrySet();
-		//¶¨Òå×Ö·û´®ÊıÖµ±íÊ¾EntryµÄvalue
+		//å®šä¹‰å­—ç¬¦ä¸²æ•°å€¼è¡¨ç¤ºEntryçš„value
 		String value[]=null;
-		//ÊµÀı»¯DTO
+		//å®ä¾‹åŒ–DTO
 		Map<String,Object> dto=new HashMap<>();
-		//Ñ­»·»ñÈ¡Ã¿¸ö¼üÖµ¶Ô
+		//å¾ªç¯è·å–æ¯ä¸ªé”®å€¼å¯¹
 		for(Entry<String,String[]>  entry:entrySet)
 		{
-			//»ñÈ¡¼üÖµ¶ÔµÄvalue²¿·Ö
+			//è·å–é”®å€¼å¯¹çš„valueéƒ¨åˆ†
 			value=entry.getValue();
-			//ÅĞ¶ÏvalueÊı×éµÄ³¤¶È,Èç¹ûÊÇ1,±íÊ¾¸Ã¿Ø¼şÊÇ·Çcheckbox,Èç¹û³¤¶È´óÓÚ1,±íÊ¾checkbox
+			//åˆ¤æ–­valueæ•°ç»„çš„é•¿åº¦,å¦‚æœæ˜¯1,è¡¨ç¤ºè¯¥æ§ä»¶æ˜¯écheckbox,å¦‚æœé•¿åº¦å¤§äº1,è¡¨ç¤ºcheckbox
 			if(value.length==1)
 			{
 				dto.put(entry.getKey(), value[0]);
