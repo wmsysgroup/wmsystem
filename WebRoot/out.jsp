@@ -40,7 +40,7 @@ function sumall(){
         if(obj[k].checked)
             count=Number(obj[k].value)+count;
     }
-	document.getElementById("ss").value=count;
+	document.getElementById("ss").value=count.toFixed(2);
 
 	}
 </script>
