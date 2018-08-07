@@ -1,5 +1,6 @@
 package com.wmsys.system.db;
 //数据库连接对象
+
 import java.sql.Connection;
 //驱动管理器
 import java.sql.DriverManager;
@@ -7,10 +8,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 //资源文件解析器
 import java.util.ResourceBundle;
+
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 //线程局部变量--线程副本
 import java.lang.ThreadLocal;
+
 import com.wmsys.system.tools.*;
 
 public class DBUtils 
@@ -220,8 +226,7 @@ public class DBUtils
   {
 	     try 
 	     {
-			
-				System.out.println(DBUtils.getConnection());
+	    	 System.out.println(DBUtils.getConnection());
 			
 		 } 
 	     catch (Exception e) 
