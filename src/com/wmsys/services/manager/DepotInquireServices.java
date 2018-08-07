@@ -13,7 +13,7 @@ import com.wmsys.system.tools.Tools;
 
 public class DepotInquireServices {
 
-	//定义数据传输对象
+			//定义数据传输对象
 			private Map<String,Object> dto = null;
 			
 			//接受dto
