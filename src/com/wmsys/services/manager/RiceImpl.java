@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.neusoft.services.support.JdbcServicesSupport;
+import com.wmsys.services.support.JdbcServicesSupport;
 
 public class RiceImpl extends JdbcServicesSupport 
 {
@@ -48,7 +48,7 @@ public class RiceImpl extends JdbcServicesSupport
 		}
 		//
 		sql.append(" limit  10");
-		//¡Œ
+		//Â¡Å’
 //		List<Map<String,String>> map =this.queryForList(sql.toString(), paramList.toArray());
 //		System.out.println(map);
 		return this.queryForList(sql.toString(), paramList.toArray());
@@ -79,7 +79,7 @@ public class RiceImpl extends JdbcServicesSupport
 		
 	}
 	
-	//¯¢
+	//Â¯Â¢
 	public final Map<String,String> findById()throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
