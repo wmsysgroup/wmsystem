@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.wmsys.services.support.JdbcServicesSupport;
-
 public class RiceImpl extends JdbcServicesSupport 
 {
 	@Override
 	public List<Map<String, String>> query() throws Exception 
 	{
-		//还原查询条件
+		//杩樺師鏌ヨ鏉′欢
 		Object bgname=this.get("bgname");
 		Object bglevel=this.get("bglevel");
 		Object bgchandi=this.get("bgchandi");
@@ -46,10 +44,10 @@ public class RiceImpl extends JdbcServicesSupport
 			sql.append("and bgtype =?");
 			paramList.add(bgtype);
 		}
-		//控制显示条数
+		//鎺у埗鏄剧ず鏉℃暟
 		sql.append(" limit  10");
 		
-		//执行
+		//鎵ц
 	    return this.queryForList(sql.toString(), paramList.toArray());
 	}
 
