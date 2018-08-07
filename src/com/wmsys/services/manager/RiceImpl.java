@@ -1,4 +1,4 @@
-package com.neusoft.services;
+package com.wmsys.services.manager;
 
 import java.util.ArrayList;
 import java.util.List;

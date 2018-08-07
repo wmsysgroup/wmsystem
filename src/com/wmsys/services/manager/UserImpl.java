@@ -1,4 +1,4 @@
-package com.neusoft.services;
+package com.wmsys.services.manager;
 
 import java.util.Map;
 
@@ -14,8 +14,7 @@ public final class UserImpl extends JdbcServicesSupport {
 	
 
 	/* 
-	 * ¯¢
-	 * 
+	 *
 	 * uname,udate,usex,utype,ustate,remarks
 	 * according account to get msg type of map 
 	 * 

@@ -1,4 +1,4 @@
-package com.neusoft.web;
+package com.wmsys.servlet.manager;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,13 +24,13 @@ public class RiceManagerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.setCharacterEncoding("UTF-8");
-		//实例化类
+		
 		final RiceImpl services =new RiceImpl();
 		try 
 		{
-			//植入dto
+			
 			services.setMapDto(this.createDto(request));
-			//核心处理
+			//
 			this.excute(services, request);
 	
 		} catch (Exception e) 
@@ -47,10 +47,10 @@ public class RiceManagerServlet extends HttpServlet {
 		this.doGet(request, response);
 	}
 	
-	//查询
+	//鏌ヨ
 	private final void excute(RiceImpl services,HttpServletRequest request)throws Exception
 	{
-		//核心处理
+		//
 		List<Map<String,String>> rows=services.query();
 		if(rows.size()>0)
 		{
@@ -58,7 +58,7 @@ public class RiceManagerServlet extends HttpServlet {
 		}
 		else
 		{
-			request.setAttribute("msg", "没有符合条件的数据!");
+			request.setAttribute("msg", "不存在满足条件的数据!");
 		}
 	}
 	
@@ -66,22 +66,22 @@ public class RiceManagerServlet extends HttpServlet {
 	
 	
 	
-	//获取dto
+	//
 	private final Map<String,Object> createDto(HttpServletRequest request)
     {
 		Map<String,String[]> tem=request.getParameterMap();
-		//1.获取所有的键值对集合(EntrySet)
+		//
 		Set<Entry<String,String[]>> entrySet=tem.entrySet();
-		//定义字符串数值表示Entry的value
+		//
 		String value[]=null;
-		//实例化DTO
+		//
 		Map<String,Object> dto=new HashMap<>();
-		//循环获取每个键值对
+		//
 		for(Entry<String,String[]>  entry:entrySet)
 		{
-			//获取键值对的value部分
+			
 			value=entry.getValue();
-			//判断value数组的长度,如果是1,表示该控件是非checkbox,如果长度大于1,表示checkbox
+			//checkbox
 			if(value.length==1)
 			{
 				dto.put(entry.getKey(), value[0]);

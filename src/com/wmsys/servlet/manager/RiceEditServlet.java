@@ -1,4 +1,4 @@
-package com.neusoft.web;
+package com.wmsys.servlet.manager;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ public class RiceEditServlet extends HttpServlet {
 		final RiceImpl services =new RiceImpl();
 		try 
 		{
-			//植入dto
+			//
 			services.setMapDto(this.createDto(request));
 			//
 			
@@ -45,7 +45,7 @@ public class RiceEditServlet extends HttpServlet {
 
 		this.doGet(request, response);
 	}
-	//单一实力查询
+	//
 	private final void execute(RiceImpl services,HttpServletRequest request)throws Exception
 	{
 		Map<String,String> ins=services.findById();
@@ -63,22 +63,22 @@ public class RiceEditServlet extends HttpServlet {
 
 
 
-//获取dto
+//鑾峰彇dto
 	private final Map<String,Object> createDto(HttpServletRequest request)
   {
 		Map<String,String[]> tem=request.getParameterMap();
-		//1.获取所有的键值对集合(EntrySet)
+		//
 		Set<Entry<String,String[]>> entrySet=tem.entrySet();
-		//定义字符串数值表示Entry的value
+		//
 		String value[]=null;
-		//实例化DTO
+		//
 		Map<String,Object> dto=new HashMap<>();
-		//循环获取每个键值对
+		//
 		for(Entry<String,String[]>  entry:entrySet)
 		{
-			//获取键值对的value部分
+			//
 			value=entry.getValue();
-			//判断value数组的长度,如果是1,表示该控件是非checkbox,如果长度大于1,表示checkbox
+			//
 			if(value.length==1)
 			{
 				dto.put(entry.getKey(), value[0]);
