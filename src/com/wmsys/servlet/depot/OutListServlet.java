@@ -37,10 +37,7 @@ public class OutListServlet extends HttpServlet
 			request.setAttribute("msg","该品种大米库中暂无，请及时进货");
 			e.printStackTrace();
 		}
-		finally
-		{
-			DBUtils.close();
-		}
+		
 		request.getRequestDispatcher("/out.jsp").forward(request, response);
 	}
 

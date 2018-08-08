@@ -122,7 +122,7 @@ public class AddOlServlet extends HttpServlet
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBUtils.close();
+		
 		request.setAttribute("msg", "³ö¿â³É¹¦");
 		request.getRequestDispatcher("/out.jsp").forward(request, response);
 	}

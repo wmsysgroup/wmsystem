@@ -25,15 +25,13 @@ public class InListServlet extends HttpServlet
 		InBoundServImpl ibs=new InBoundServImpl();
 		try {
 			List<Map<String,Object>> rows=ibs.findAll();
+			
 			request.setAttribute("rows", rows);
 		} catch (Exception e) {
 			request.setAttribute("msg", "≤È—Ø ß∞‹");
 			e.printStackTrace();
 		}
-		finally
-		{
-			DBUtils.close();
-		}
+		
 		request.getRequestDispatcher("/ini.jsp").forward(request, response);
 	}
 

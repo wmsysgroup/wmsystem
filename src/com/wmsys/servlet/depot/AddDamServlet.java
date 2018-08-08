@@ -63,7 +63,7 @@ public class AddDamServlet extends HttpServlet
 			ibs.updatema();
 			
 		} catch (Exception e) {
-			DBUtils.close();
+			
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher("/destr.jsp").forward(request, response);

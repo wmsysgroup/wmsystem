@@ -35,6 +35,7 @@ public class OrderServlet extends HttpServlet {
             val = entry.getValue();
             dto.put(entry.getKey(),val[0]);
         }
+        dto.put("plprincipal", "1");
         services.setDto(dto);
 
         try

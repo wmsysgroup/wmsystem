@@ -47,6 +47,7 @@ public class SaveInbServlet extends HttpServlet
 		dto.put("wnumber", "2");
 		dto.put("number", dto.get("innumber"));
 		InBoundServImpl ibs=new InBoundServImpl();
+	
 		ibs.setMapDto(dto);
 		
 		try {
@@ -60,10 +61,7 @@ public class SaveInbServlet extends HttpServlet
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally
-		{
-			DBUtils.close();
-		}
+		
 		request.getRequestDispatcher("/InListServlet").forward(request, response);
 	}
 

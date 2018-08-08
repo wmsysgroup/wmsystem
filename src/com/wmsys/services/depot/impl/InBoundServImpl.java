@@ -28,7 +28,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("SELECT p.plid,b.bgname,p.plquantity,p.plsupplier,p.plnumber")
-				.append("  FROM purchaselist p,basicgoods b")
+				.append("  FROM purchaseList p,basicGoods b")
 				.append(" WHERE p.plid=?");
 		return this.query(sql.toString(), this.get("plid"));
 	}
@@ -41,8 +41,8 @@ public class InBoundServImpl extends JdbcServiceSupport
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("SELECT p.plid,b.bgname,p.plquantity,p.plsupplier")
-				.append("  FROM purchaselist p,basicgoods b")
-				.append(" WHERE p.plstate=?");
+				.append("  FROM purchaseList p,basicGoods b")
+				.append(" WHERE p.plstate=? and b.bgnumber=p.plnumber");
 		return this.queryList(sql.toString(), 1);
 	}
 	
@@ -58,7 +58,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("SELECT i.inid,b.bgname,m.number")
-				.append("  FROM margin m,inboundlist i,basicgoods b,purchaselist p")
+				.append("  FROM margin m,InboundList i,basicGoods b,purchaseList p")
 				.append(" WHERE m.indid=i.inid")
 				.append("   AND i.plid=p.plid")
 				.append("   AND p.plnumber=b.bgnumber")
@@ -114,7 +114,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 	
 	public Date finddate()throws Exception
 	{
-		String sql="select indate from inboundlist where inid=?";
+		String sql="select indate from InboundList where inid=?";
 		Object arg=this.get("inid");
 		
 		PreparedStatement pstm=null;
@@ -160,7 +160,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 	public void insertin() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("insert into inboundlist(inid,plid,innumber,inquantity,indate,inprincipal,wnumber,remarks)")
+				.append("insert into InboundList(inid,plid,innumber,inquantity,indate,inprincipal,wnumber,remarks)")
 				.append("              values(?,?,?,?,?,?,?,?)");
 		Object args[]={
 				this.get("inid"),
@@ -183,7 +183,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 	public void insertdam() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("insert into goodsdam(gdid,indid,gdnumber,gdquantity,gdprincipal,gdremarks)")
+				.append("insert into goodsDam(gdid,indid,gdnumber,gdquantity,gdprincipal,gdremarks)")
 				.append("              values(?,?,?,?,?,?)");
 		Object args[]={
 				this.get("gdid"),
@@ -206,7 +206,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 	public void insertout() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("insert into outboundlist(outid,indid,outnumber,outquantity,outdate,outprincipal,outstate,remarks)")
+				.append("insert into outboundList(outid,indid,outnumber,outquantity,outdate,outprincipal,outstate,remarks)")
 				.append("              values(?,?,?,?,?,?,?,?)");
 		Object args[]={
 				this.get("outid"),
@@ -272,7 +272,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 	 */
 	public void updateSt()throws Exception
 	{
-		String sql="update purchaselist set plstate=0 where plid=?";
+		String sql="update purchaseList set plstate=0 where plid=?";
 		Object args[]={
 				
 				this.get("plid")

@@ -53,7 +53,7 @@ public class PurchaseListServlet extends HttpServlet {
         catch (Exception e)
         {
             String msg = "网络故障";
-            request.setAttribute("，msg", msg);
+            request.setAttribute("msg", msg);
             e.printStackTrace();
         }
 

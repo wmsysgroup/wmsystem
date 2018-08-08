@@ -36,7 +36,7 @@ public class Order
         //数据整合
         Object args[]={
                 Tools.listno("E"),this.get("plnumber"),this.get("plquantity"),this.get("pldate"),
-                this.get("plsupplier"),this.get("plprincipal"),this.get("plstate"),this.get("remarks")};
+                this.get("plsupplier"),this.get("plprincipal"),1,this.get("remarks")};
         try
         {
             pstm = DBUtils.prepareStatement(sql.toString());

@@ -34,9 +34,7 @@ public class InbAddServlet extends HttpServlet
 			request.setAttribute("msg","该数据已被删除或禁止访问");
 			e.printStackTrace();
 		}
-		finally{
-			DBUtils.close();
-		}
+	
 		request.getRequestDispatcher("/iniall.jsp").forward(request, response);
 	}
 
