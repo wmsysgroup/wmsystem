@@ -10,8 +10,15 @@ import com.wmsys.services.support.JdbcServicesSupport;
  */
 public final class UserImpl extends JdbcServicesSupport {
 	
-
-	
+	//ÐÂÕËºÅ
+	private String newAccount;
+	public String getNewAccount() {
+		return newAccount;
+	}
+	private void setNewaccount()throws Exception
+	{
+		this.newAccount=this.getAccount();
+	}
 
 	/* 
 	 *
@@ -74,6 +81,7 @@ public final class UserImpl extends JdbcServicesSupport {
 		                                  // 1 2 3 4 5 6 7 8 
 		
 		//
+		this.setNewaccount();
 		Object args[]= {
 				this.get("upassword"),
 				this.get("uname"),
@@ -82,19 +90,19 @@ public final class UserImpl extends JdbcServicesSupport {
 				this.get("utype"),
 				1,
 				this.get("remarks"),
-				this.get("uaccount")
+				newAccount
 				
 		};
 		return this.executeUpdate(sql.toString(), args)>0;
 	}
 
-//	private static final String getAccount()throws Exception
-//	{
-//		long now = System.currentTimeMillis();
-//		String account = now+"";
-//		
-//		return account.substring(0,11);
-//	}
+	private final String getAccount()throws Exception
+	{
+		long now = System.currentTimeMillis();
+		String account = now+"";
+		
+		return account.substring(0,11);
+	}
 	
 
 }
