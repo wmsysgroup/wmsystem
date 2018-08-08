@@ -29,7 +29,7 @@ public class InBoundServImpl extends JdbcServiceSupport
 		StringBuilder sql=new StringBuilder()
 				.append("SELECT p.plid,b.bgname,p.plquantity,p.plprincipal,p.pldate,p.plnumber,s.sysvalue fvalue,ss.sysvalue svalue")
 				.append("  FROM purchaseList p,basicGoods b,syscode s,syscode ss")
-				.append(" WHERE p.plstate=?")
+				.append(" WHERE p.plid=?")
 				.append(" 	and b.bgnumber=p.plnumber")
 				.append(" 	and s.sysname='bglevel'")
 				.append(" 	and s.syscode=b.bglevel")
