@@ -43,7 +43,7 @@ public class GetToSaleInfoServlet extends BaseServlet {
 			request.setAttribute("msg", "Õ¯¬Áπ ’œ!");
 			ex.printStackTrace();
 		}
-		request.getRequestDispatcher("/saleJSP/Sell.jsp").forward(request, response);
+		request.getRequestDispatcher("/Sell.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

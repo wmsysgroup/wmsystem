@@ -7,16 +7,19 @@
 %>
 <html>
 <head>
+<link rel="stylesheet" href="css/bootstrap.min.css">  
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 <title>员工管理</title>
 </head>
 <body>
 ${msg }
 <br>
-<br>
-<br>
-<br>
+
 <form action="<%=path%>/user.html" method="post">
-  <table border="1" width="55%" align="center">
+<div style="margin:100px auto 0 auto;width:65%;">
+  <table style="width:100%;border-collapse:separate;border-spacing:0px 10px;text-align:left;">
     <caption>
                 员工管理
        <hr width="160">
@@ -24,47 +27,48 @@ ${msg }
   <tr>
     <td>账户</td>
     <td> 
-    <e:text name="uaccount" required="true" defval="${ins.uaccount}"/>
+    <e:text style="height:30px" name="uaccount" required="true" defval="${ins.uaccount}"/>
     </td>
     <td>
-    <input type="submit" name="next" value="查询" formaction="<%=path%>/user.html" formnovalidate="formnovalidate">
-    </td>
+    <button type="submit" class="btn btn-info" name ="next"  formaction="<%=path%>/user.html" formnovalidate="formnovalidate">查询</button>    </td>
   </tr>
   <tr>
-  <td>名字</td>
-  <td>
-  <e:text name="uname" required="true" defval="${ins.uname }"/>
-  </td>
-  <td>性别</td>
-  <td>
-  <e:radio name="usex" value="男:1,女:2,保密:3" defval="${empty param.uaccount?'1':ins.usex }"/>
-  </td>
+  	<td>名字</td>
+  	<td>
+  	<e:text style="height:30px" name="uname" required="true" defval="${ins.uname }"/>
+  	</td>
+  	<td>性别</td>
+  	<td>
+  	<e:radio style="height:30px" name="usex" value="男:1,女:2,保密:3" defval="${empty param.uaccount?'1':ins.usex }"/>
+  	</td>
   </tr>
   <tr>
-  <td>入职日期</td>
-  <td>
-  <e:date name="udate"  required="true" defval="${ins.udate}"/>
-  </td>
-  <td>工种</td>
-  <td><e:select value="进货人员:1,销售人员:2,库房人员:3,管理人员:0" name="utype" defval = "${empty param.uaccount?'1':ins.utype }"/>
-  </td>
+	  <td>入职日期</td>
+	  <td>
+	  <e:date style="height:30px" name="udate"  required="true" defval="${ins.udate}"/>
+	  </td>
+	  <td>工种</td>
+	  <td><e:select  style="width:206px" value="进货人员:1,销售人员:2,库房人员:3,管理人员:0" name="utype" defval = "${empty param.uaccount?'1':ins.utype }"/>
+	  </td>
   </tr>
   <tr>
-  <td>状态</td>
-  <td><e:select value="在职:1,离职:2" name="ustate" defval = "${ins.ustate}"/></td>
-  </tr>
-  <tr>
-  <td>备注</td>
-  <td colspan="3">
-      <e:textarea rows="5" cols="65" name="remarks" defval="${ins.remarks }"/>
-  </td>
-  </tr>
+	  <td>状态</td>
+	  <td><e:select style="width:206px" value="在职:1,离职:2" name="ustate" defval = "${ins.ustate}"/></td>
+	   <td>备注</td>
+	  <td >
+	      <e:text style="height:30px"  name="remarks" defval="${ins.remarks }"/>
+	  </td>
+	  </tr>
+	
   <tr>
   <td colspan="4" align ="center">
-  <input type="submit" name ="next" value="提交" formaction="<%=path%>/userc.html">
-  <input type="submit" name ="next" value="添加" formaction="<%=path%>/Useradd.jsp">
-  </table>
+  	<div style = "float:right">
+        	<button type="submit" class="btn btn-info" name ="next" formaction="<%=path%>/userc.html">提交</button>&nbsp;&nbsp;&nbsp;
+        	<button type="submit" class="btn btn-info" name ="next" formaction="<%=path%>/Useradd.jsp">添加</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
 
+  </table>
+</div>
 </form>
 
 </body>

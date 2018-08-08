@@ -10,6 +10,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" href="css/bootstrap.min.css">  
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -18,7 +23,12 @@
 ${msg}
 
 	<form action="<%=path %>/SalesInquireServlet" method="get">
-        <table border="1" style="border-collapse: collapse">
+	
+	
+	<div style="margin:0 auto;width:90%">
+	
+	<div style="margin:0 auto;width:60%">
+        <table style="width:100%;border-collapse:separate;border-spacing:0px 10px;text-align:center">
         	  <tr>
                 <td>销售编号</td>
                 <td>
@@ -65,9 +75,11 @@ ${msg}
                 </td>
             </tr>
         </table>
-        <input type="submit" value="查询">
-        
-        <table border="1" style="border-collapse: collapse">
+       <div style = "float:right;padding-bottom:16px">
+        	<button type="submit" class="btn btn-info" >查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover table-condensed" style="width:100%;text-align:center">
 		   <tr>
 		     <td>序号</td>
 		     <td>销售编号</td>
@@ -78,7 +90,7 @@ ${msg}
 		     <td>购买方</td>
 		     <td>销售日期</td>
 		     <td>负责人</td>
-		     <td>备注</td>
+		    
 		   </tr>
 		   <c:choose>
 		     <c:when test="${rows!=null }">
@@ -93,7 +105,7 @@ ${msg}
 					     <td>${ins.spurchaser }</td>
 					     <td>${ins.sdate }</td>
 					     <td>${ins.sprincipal }</td>
-					     <td>${ins.remarks }</td>
+					     
 					   </tr>
 			     </c:forEach>
 		     </c:when>
@@ -109,12 +121,13 @@ ${msg}
 		             <td></td>
 		             <td></td>
 		              <td></td>
-		             <td></td>
+		             
 		           </tr>
 		         </c:forEach>
 		     </c:otherwise>
 		   </c:choose>
 		 </table>
+		 </div>
     </form>
 </body>
 </html>

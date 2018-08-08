@@ -8,7 +8,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<link rel="stylesheet" href="css/bootstrap.min.css">  
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 
 <script type="text/javascript">
@@ -49,14 +51,36 @@ function sumall(){
 
 	<body>
 	${msg }
+	<div style="margin:0 auto;width:70%;padding-top:60px">
+	
 		<form  action="<%=path %>/OutListServlet" method="post">
-			<span>大米编号：</span><input name="bgnumber" type="text" value="${instad}"><br>
-			<input type="submit" value="查询">
+			<div style="float:left;display:inline-block">
+				<span>大米编号：</span><input class="form-control" style="width:150px;display:inline-block" name="bgnumber" type="text" value="${instad}">
+				<button type="submit" class="btn btn-info" >查询</button>
+			</div>
+			
 		</form>
-		<br>
+		
 		
 		<form id="myform" onSubmit="return beforeSubmit(this)" name="form" action="<%=path %>/AddOlServlet" method="post">
-		<table border="1" align="center">
+		<div style="float:right;display:inline-block;padding-bottom:16px">
+		<span>数量：</span><input class="form-control" style="width:150px;display:inline-block" id="ss" name="count" type="text" value="">
+		<input type="hidden" name="outnumber" value="${instad}">
+		<button type="submit" class="btn btn-info" >提交</button>
+		</div>
+		
+		<table class="table table-striped table-bordered table-hover table-condensed" style="width:100%;text-align:center">
+		
+		<tr>
+			<td>&nbsp;</td>
+             <td>入库编号</td>
+             <td>货物名称</td>
+             <td>储量</td>
+             <td>单价</td>
+             <td>进货日期</td>
+             <td>品级</td>
+             <td>产地</td>
+           </tr>
 		
 		<c:choose>
     	 <c:when test="${rows!=null }">
@@ -87,6 +111,7 @@ function sumall(){
              <td></td>
              <td></td>
              <td></td>
+             <td></td>
            </tr>
          </c:forEach>
      </c:otherwise>
@@ -94,11 +119,9 @@ function sumall(){
 			
 		</table>
 		
-		<span>数量：</span><input id="ss" name="count" type="text" value="">
-		<br><br>
-		<input type="hidden" name="outnumber" value="${instad}">
-		<input type="submit" value="提交">
+		
+		
 		</form>
-	
+	</div>
 	</body>
 </html>

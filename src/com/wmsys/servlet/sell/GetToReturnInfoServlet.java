@@ -43,7 +43,7 @@ public class GetToReturnInfoServlet extends BaseServlet {
 			request.setAttribute("msg", "Õ¯¬Áπ ’œ!");
 			ex.printStackTrace();
 		}
-		request.getRequestDispatcher("/saleJSP/Return.jsp").forward(request, response);
+		request.getRequestDispatcher("/Return.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

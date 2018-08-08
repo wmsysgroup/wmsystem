@@ -10,6 +10,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/bootstrap.min.css">  
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <title>Insert title here</title>
 </head>
@@ -18,7 +21,10 @@
 ${msg}
 
 <form action="<%=path %>/PurchaseListServlet" method="get">
-    <table border="1" style="border-collapse: collapse">
+	<div style="margin:0 auto;width:90%">
+	
+	<div style="margin:0 auto;width:60%">
+    <table style="width:100%;border-collapse:separate;border-spacing:0px 10px;text-align:center"">
         <tr>
             <td>货物名称</td>
             <td>
@@ -40,11 +46,13 @@ ${msg}
             </td>
         </tr>
     </table>
-    <input type="submit" name = "查询">
-
-    <table border="1" width="95%" align="center" style="border-collapse: collapse">
+    	<div style = "float:right;padding-bottom:16px">
+        	<button type="submit" class="btn btn-info" >查询</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+	</div>
+    <table class="table table-striped table-bordered table-hover table-condensed" style="width:100%;text-align:center">
         <tr>
-            <td><序号></序号></td>
+            <td>序号</td>
             <td>货物编号</td>
             <td>货物名称</td>
             <td>品级</td>
@@ -89,6 +97,7 @@ ${msg}
             </c:otherwise>
         </c:choose>
     </table>
+    </div>
 </form>
 </body>
 </html>

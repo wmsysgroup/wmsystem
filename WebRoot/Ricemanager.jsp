@@ -10,6 +10,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" href="css/bootstrap.min.css">  
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 <title>大米管理</title>
 <script type="text/javascript">
  function onEdit(obj)
@@ -29,7 +34,10 @@ ${msg }
 <br>
 <br>
 <form id = "myform" action="<%=path %>/RiceManagerServlet" method="post">
- <table border="1" width="95%" align="center">
+<div style="margin:0 auto;width:90%">
+	
+	<div style="margin:0 auto;width:60%">
+ <table style="width:100%;border-collapse:separate;border-spacing:0px 10px;text-align:center">
    <caption>
        大米信息管理
    <hr width="160"> 
@@ -41,7 +49,7 @@ ${msg }
 		        </td>
 		        <td>等级</td>
 		        <td>
-		        <e:select value="一级:1,二级:2,三级:3,特级:4" name="bglevel"/>
+		        <e:select value="一级:1,二级:2,三级:3,特级:4" header="true" name="bglevel"/>
 		        </td>
 		     </tr>
 		     <tr>
@@ -51,13 +59,14 @@ ${msg }
 		        </td>
 		        <td>种类</td>
 		        <td>
-		        <e:select value="粳米:1,五常米:2,香米:3,丝苗米:4" name="bgtype"/>
+		        <e:select value="粳米:1,五常米:2,香米:3,丝苗米:4" header="true" name="bgtype"/>
                 </td>
               </tr>
 
   </table>
+  </div>
   <!-- 数据迭代 -->
- <table border="1" width="95%" align="center">
+ <table class="table table-striped table-bordered table-hover table-condensed" style="width:100%;text-align:center">
    <tr>
      <td></td>
      <td>编号</td>
@@ -108,15 +117,12 @@ ${msg }
    </c:choose>
  </table>
  <!-- 功能按钮 -->
- <table border="1" width="95%" align="center">
-   <tr>
-     <td align="center">
-       <input type="submit" name="next" value="查询">
-       <input type="submit" name="next" value="添加" formaction="<%=path%>/AddRice.jsp">
-     </td> 
-   </tr>
- </table>
-   
+  <div style = "float:right">
+        	<button type="submit" class="btn btn-info" name="next">查询</button>
+        	<button type="submit" class="btn btn-info" name="next" formaction="<%=path%>/AddRice.jsp">添加</button>
+        </div>
+ 
+   </div>
 </form>
 
 </body>

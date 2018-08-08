@@ -9,18 +9,34 @@
 <html>
 <head>
 
+<link rel="stylesheet" href="css/bootstrap.min.css">  
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
-<form action="<%=path %>/InListServlet" method="post">
-	<table border="1" align="center">
-	
+
+
+<div style="width:60%; margin:100px auto">
+<form action="<%=path%>/InbAddServlet" method="post">
+	<table class="table table-striped table-bordered table-hover table-condensed" style="width:100%;text-align:center">
+		<thead>
+		 <tr>
+             <td>进货编号</td>
+             <td>货物名称</td>
+             <td>数量</td>
+             <td>供应商</td>
+             <td>进货日期</td>
+             <td>&nbsp;&nbsp;</td>
+           </tr>
+		<thead>
+		<tbody>
 	  <c:choose>
     	 <c:when test="${rows!=null }">
 		     <c:forEach var="ins" items="${rows }" varStatus="vs">
 		     
 				<tr>
-					
 					<td width="100" align="center">${ins.plid}</td>
 					<td width="100" align="center">${ins.bgname}</td>
 					<td width="100" align="center">${ins.plquantity}</td>
@@ -44,9 +60,11 @@
          </c:forEach>
      </c:otherwise>
    	</c:choose>
+   	<tbody>
 		</table>
-		
-		<input type="submit" value="查询">
 		</form>
+		</div>
+
+
 </body>
 </html>

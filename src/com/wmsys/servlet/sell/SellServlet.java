@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class SellServlet
@@ -21,6 +22,10 @@ public class SellServlet extends BaseServlet {
 		{
 			//1.获取页面数据
 			Map<String,Object> dto=this.createDto(request);
+			//获取用户ID
+			HttpSession session = request.getSession(); 
+			Map<String,String> user=(Map<String, String>) session.getAttribute("USERINFO");
+			dto.put("sprincipal", user.get("uaccount"));
 			SellServicesImpl services=new SellServicesImpl(dto);
 			//调用事务执行方法
 			services.executeTrans();
@@ -31,7 +36,7 @@ public class SellServlet extends BaseServlet {
 			request.setAttribute("msg", "网络故障!");
 			ex.printStackTrace();
 		}
-		request.getRequestDispatcher("/saleJSP/Sell.jsp").forward(request, response);
+		request.getRequestDispatcher("/Sell.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

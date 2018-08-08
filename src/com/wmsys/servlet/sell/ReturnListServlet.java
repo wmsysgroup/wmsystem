@@ -42,7 +42,7 @@ public class ReturnListServlet extends BaseServlet {
 			request.setAttribute("msg", "Õ¯¬Áπ ’œ!");
 			ex.printStackTrace();
 		}
-		request.getRequestDispatcher("/saleJSP/ReturnList.jsp").forward(request, response);
+		request.getRequestDispatcher("/ReturnList.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

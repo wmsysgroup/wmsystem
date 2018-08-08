@@ -84,7 +84,7 @@ public final class SellServicesImpl extends SellServicesSupport
 		//2.组织数据
 		Object args[]={
 				Tools.listno("C"),this.get("outid"),this.get("snumber"),this.get("sprice"),this.get("squantity"),
-				this.get("spurchaser"),nowTime.toString(),"待添",this.get("remarks")
+				this.get("spurchaser"),nowTime.toString(),this.get("sprincipal"),this.get("remarks")
 		};
 		//3.添加
 		this.appendSql(sql.toString(), args);
@@ -139,7 +139,7 @@ public final class SellServicesImpl extends SellServicesSupport
 				.append(" from syscode sc3 where sc3.sysname='bglevel') sc4")
 				.append(" where b.bgnumber= o.outnumber")
 				.append(" and b.bgtype=sc2.syscode and b.bglevel=sc4.syscode")
-				.append(" and o.outstate=2")
+				.append(" and o.outstate=1")
 		;
 		
 		List<Object> paramList=new ArrayList<>(20);

@@ -71,6 +71,7 @@ public class AddDamServlet extends HttpServlet
 			
 			e.printStackTrace();
 		}
+		request.setAttribute("msg", "Ìí¼Ó³É¹¦£¡£¡£¡£¡");
 		request.getRequestDispatcher("/destr.jsp").forward(request, response);
 	}
 

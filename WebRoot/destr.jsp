@@ -9,8 +9,13 @@
 <html>
 <head>
 
+<link rel="stylesheet" href="css/bootstrap.min.css">  
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
+
+
 <script type="text/javascript">
 	function beforeSubmit(form){
 			if(form.gdremarks.value==''){
@@ -22,18 +27,30 @@
 	}
 </script>
 	<body>
+	${msg }
 		<form name="form" onSubmit="return beforeSubmit(this);" action="<%=path %>/AddDamServlet" method="post">
-				<span>入库编号</span>
-				<select name="indid">
-					<option>B00000000</option>
-					<option>B000123456789</option>
-				</select>
-				<br>
-				<input type="hidden" name="gdnumber" value="A1023">
-				<span>货物名称</span><input  type="text" value=""><br><br>
-				<span>数    量</span><input name="gdquantity" type="tel" value=""><br><br>
-				<span>损毁原因</span><input name="gdremarks" type="text" value=""><br>
-				<input type="submit"  value="提交">
+		
+		<div style="margin:100px auto 0 auto;width:55%;">
+		
+				 <table style="width:100%;border-collapse:separate;border-spacing:0px 10px;text-align:center">
+				 <tr>
+				 	<td width="100px">入库编号</td>
+				 	<td width="150px"><input class="form-control" style="width:150px" type="text" name="indid" required="required"></td>
+				 	<td width="100px">货物编号</td>
+				 	<td width="150px"><input class="form-control" style="width:150px" type="text" name="gdnumber" required="required"></td>
+				 </tr>
+				  <tr>
+				 	<td>数    量</td>
+				 	<td><input class="form-control" style="width:150px" type="text" name="gdquantity" required="required"></td>
+				 	<td>损毁原因</td>
+				 	<td><input class="form-control" style="width:150px" type="text" name="gdremarks" ></td>
+				 </tr>
+				 
+				 </table>
+				<div style = "float:right">
+					<button type="submit" class="btn btn-info" >提交</button>
+				</div>
+		</div>
 		</form>
 	</body>
 </html>

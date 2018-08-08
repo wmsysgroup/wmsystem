@@ -13,6 +13,9 @@
     <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/bootstrap.min.css">  
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <title>Insert title here</title>
 </head>
@@ -21,57 +24,52 @@
 ${msg}
 
 <form action = "<%=path %>/OrderServlet" method="get">
-    <table border="1" style="border-collapse: collapse">
+	<div style="margin:100px auto 0 auto;width:55%;">
+    <table style="width:100%;border-collapse:separate;border-spacing:0px 10px;text-align:center">
         <tr>
             <td>货物名称</td>
-            <td><input type="text"
-                       value =<%=request.getParameter("name")%> required="required" readonly>
+            <td><%=request.getParameter("name")%>
             </td>
             <td>货物编号</td>
-            <td><input type="text" name="plnumber"
-                value =<%=request.getParameter("number")%> required="required" readonly>
+            <td><%=request.getParameter("number")%>
             </td>
         </tr>
         <tr>
             <td>单价</td>
-            <td><input type="text"
-                       value =<%=request.getParameter("price")%>
-                               required="required" readonly>
+            <td><%=request.getParameter("price")%>                
             </td>
             <td>分级</td>
-            <td><input type="text" value =<%=request.getParameter("level")%> required="required" readonly></td>
+            <td><%=request.getParameter("level")%></td>
         </tr>
         <tr>
             <td>产地</td>
-            <td><input type="text" value =<%=request.getParameter("chandi")%> required="required" readonly></td>
+            <td><%=request.getParameter("chandi")%></td>
             <td>种类</td>
-            <td><input type="text" value =<%=request.getParameter("type")%> required="required"  readonly></td>
+            <td><%=request.getParameter("type")%></td>
         </tr>
         <tr>
-            <td>状态</td>
-            <td><input type="number" name="plstate" value = 1 required="required" readonly></td>
-            <td>入库流水号</td>
-            <td><input type="text" name="plid" required="required" readonly></td>
+          
+            
         </tr>
         <tr>
             <td>数量</td>
-            <td><input type="number" name="plquantity" required="required"></td>
+            <td><input class="form-control" style="width:150px" type="number" name="plquantity" required="required"></td>
             <td>进货日期</td>
-            <td><input type="date" name="pldate" required="required"></td>
+            <td><input class="form-control" style="width:150px" type="date" name="pldate" required="required"></td>
         </tr>
         <tr>
             <td>供应商</td>
-            <td><input type="text" name="plsupplier" required="required"></td>
-            <td>负责人</td>
-            <td><input type="text" name="plprincipal" required="required"></td>
-        </tr>
-        <tr>
+            <td><input class="form-control" style="width:150px" type="text" name="plsupplier" required="required"></td>
             <td>备注</td>
-            <td><input type="text" name="remarks"></td>
+            <td><input class="form-control" style="width:150px" type="text" name="remarks"></td>
         </tr>
+       
     </table>
-    <input type="submit" value="订货">
-
+    	<div style = "float:right">
+        	<button type="submit" class="btn btn-info" >提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+	</div>
+	<input type="hidden" name="plnumber" value="<%=request.getParameter("number")%>">
 </form>
 </body>
 </html>
