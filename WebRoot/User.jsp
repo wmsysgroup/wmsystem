@@ -62,6 +62,7 @@ ${msg }
   <tr>
   <td colspan="4" align ="center">
   <input type="submit" name ="next" value="提交" formaction="<%=path%>/userc.html">
+  <input type="submit" name ="next" value="添加" formaction="<%=path%>/Useradd.jsp">
   </table>
 
 </form>
