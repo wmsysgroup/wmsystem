@@ -34,7 +34,7 @@
 				<td align="center" width="77px"></td>
 				<td align="center" width="80px">大米名称</td>
 				<td align="center">:</td>
-				<td align="center" width="146px">东北大米</td>
+				<td align="center" width="146px">${ins.bgname }</td>
 			</tr>
 		
 			<tr>
@@ -44,22 +44,30 @@
 				<td align="center" width="77px"></td>
 				<td align="center" width="80px">分级</td>
 				<td align="center">:</td>
-				<td align="center" width="146px">二级</td>
+				<td align="center" width="146px">${ins.fvalue }</td>
 			</tr>
 			<br><br> 	
 			<tr>
 				<td align="center" width="80px">种类</td>
 				<td align="center" >:</td>
-				<td align="center" width="146px">糯米</td>
+				<td align="center" width="146px">${ins.svalue }</td>
 				<td align="center" width="77px"></td>
 				<td align="center" width="80px">负责人</td>
 				<td align="center">:</td>
-				<td align="center" width="146px">283271</td>
+				<td align="center" width="146px">${ins.plprincipal }</td>
 			</tr>
 			
 		</table>
 		<form name="form" onSubmit="return beforeSubmit(this);" action="<%=path %>/SaveInbServlet" method="post">
-			<span>数量：</span><input name="inquantity" type="tel" value="${ins.plquantity }"><br>
+			<span>数量：</span><input name="inquantity" type="tel" value="${ins.plquantity }">
+			<span>仓库：</span><select name="wnumber">
+							<option value="1">1号</option>
+							<option value="2">2号</option>
+							<option value="3">3号</option>
+							<option value="4">4号</option>
+							<option value="5">5号</option>
+							<option value="6">6号</option>
+						</select><br>
 			<span>备注：</span><input name="remarks" type="text" value=""><br>
 			<input type="hidden" name="plid" value="${ins.plid }">
 			<input type="hidden" name="innumber" value="${ins.plnumber }">

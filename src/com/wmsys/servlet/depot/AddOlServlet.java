@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.wmsys.services.depot.impl.InBoundServImpl;
 import com.wmsys.services.depot.support.OutList;
@@ -34,6 +35,10 @@ public class AddOlServlet extends HttpServlet
 		BigDecimal numb=new BigDecimal(request.getParameter("count"));
 		InBoundServImpl ibs=new InBoundServImpl();
 		Map<String,Object> dto=new HashMap<String, Object>();
+		//获取用户ID
+		HttpSession session = request.getSession(); 
+		Map<String,String> user=(Map<String, String>) session.getAttribute("USERINFO");
+		
 		
 		//定义装载数据对象
 		ArrayList<OutList> all=new ArrayList<>();
@@ -93,9 +98,9 @@ public class AddOlServlet extends HttpServlet
 	        	ibs.setMapDto(dto);
 	        	dto.put("outquantity", ibs.findnum());
 	        	dto.put("outdate", Tools.getDate());
-	        	dto.put("outid", Tools.listno("E"));
+	        	dto.put("outid", Tools.listno("F"));
 	        	dto.put("outnumber", request.getParameter("outnumber"));
-	        	dto.put("outprincipal", "zyl");
+	        	dto.put("outprincipal", user.get("uaccount"));
 	        	ibs.setMapDto(dto);
 	        	ibs.insertout();
 	        	ibs.deleteMl();

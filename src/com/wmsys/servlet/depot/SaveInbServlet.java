@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.wmsys.services.depot.impl.InBoundServImpl;
 import com.wmsys.system.db.DBUtils;
@@ -38,13 +39,15 @@ public class SaveInbServlet extends HttpServlet
 			val = entry.getValue();
 			dto.put(entry.getKey(),val[0]);
 		}
+		HttpSession session = request.getSession(); 
+		Map<String,String> user=(Map<String, String>) session.getAttribute("USERINFO");
+		
 		
 		//Ìî³ädto
-		dto.put("indate", "2015-06-06");
+		dto.put("indate", Tools.getDate());
 		dto.put("inid", Tools.listno("B"));
 		dto.put("indid", dto.get("inid"));
-		dto.put("inprincipal", "12345");
-		dto.put("wnumber", "2");
+		dto.put("inprincipal", user.get("uaccount"));
 		dto.put("number", dto.get("innumber"));
 		InBoundServImpl ibs=new InBoundServImpl();
 	

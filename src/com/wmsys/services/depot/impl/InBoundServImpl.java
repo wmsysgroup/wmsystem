@@ -27,9 +27,14 @@ public class InBoundServImpl extends JdbcServiceSupport
 	public Map<String, Object> findByno() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("SELECT p.plid,b.bgname,p.plquantity,p.plsupplier,p.plnumber")
-				.append("  FROM purchaseList p,basicGoods b")
-				.append(" WHERE p.plid=?");
+				.append("SELECT p.plid,b.bgname,p.plquantity,p.plprincipal,p.pldate,p.plnumber,s.sysvalue fvalue,ss.sysvalue svalue")
+				.append("  FROM purchaseList p,basicGoods b,syscode s,syscode ss")
+				.append(" WHERE p.plstate=?")
+				.append(" 	and b.bgnumber=p.plnumber")
+				.append(" 	and s.sysname='bglevel'")
+				.append(" 	and s.syscode=b.bglevel")
+				.append(" 	and ss.sysname='bgtype'")
+				.append(" 	and ss.syscode=b.bgtype");
 		return this.query(sql.toString(), this.get("plid"));
 	}
 	
@@ -40,9 +45,14 @@ public class InBoundServImpl extends JdbcServiceSupport
 	public List<Map<String, Object>> findAll() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("SELECT p.plid,b.bgname,p.plquantity,p.plsupplier")
-				.append("  FROM purchaseList p,basicGoods b")
-				.append(" WHERE p.plstate=? and b.bgnumber=p.plnumber");
+				.append("SELECT p.plid,b.bgname,p.plquantity,p.plsupplier,p.pldate,s.sysvalue fvalue,ss.sysvalue svalue")
+				.append("  FROM purchaseList p,basicGoods b,syscode s,syscode ss")
+				.append(" WHERE p.plstate=?")
+				.append(" 	and b.bgnumber=p.plnumber")
+				.append(" 	and s.sysname='bglevel'")
+				.append(" 	and s.syscode=b.bglevel")
+				.append(" 	and ss.sysname='bgtype'")
+				.append(" 	and ss.syscode=b.bgtype");
 		return this.queryList(sql.toString(), 1);
 	}
 	
@@ -57,11 +67,13 @@ public class InBoundServImpl extends JdbcServiceSupport
 	public List<Map<String, Object>> beforeout()throws Exception
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("SELECT i.inid,b.bgname,m.number")
-				.append("  FROM margin m,InboundList i,basicGoods b,purchaseList p")
+				.append("SELECT i.inid,b.bgname,m.number,s.sysvalue,p.pldate,b.bgchandi,b.bgprice")
+				.append("  FROM margin m,InboundList i,basicGoods b,purchaseList p,syscode s")
 				.append(" WHERE m.indid=i.inid")
 				.append("   AND i.plid=p.plid")
 				.append("   AND p.plnumber=b.bgnumber")
+				.append("   AND s.sysname='bglevel'")
+				.append("   AND s.syscode=b.bglevel")
 		        .append("   AND b.bgnumber=?");
 		Object args[]={this.get("bgnumber")};
 		return this.queryList(sql.toString(),args);

@@ -11,7 +11,7 @@ public class LoginServices extends JdbcServicesSupport
 	{
 		//1.∂®“ÂSQL”Ôæ‰
 		StringBuilder sql=new StringBuilder()
-				.append("select a.uid,a.uname,a.utype")
+				.append("select a.uid,a.uaccount,a.uname,a.utype")
 				.append("  from user a")
 				.append(" where a.ustate=?")
 				.append("   and a.upassword=?")

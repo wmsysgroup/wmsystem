@@ -30,7 +30,6 @@ public class OutListServlet extends HttpServlet
 		ibs.setMapDto(dto);
 		try {
 			List<Map<String,Object>> rows=ibs.beforeout();
-			System.out.println(rows);
 			request.setAttribute("rows", rows);
 			request.setAttribute("instad", request.getParameter("bgnumber"));
 		} catch (Exception e) {

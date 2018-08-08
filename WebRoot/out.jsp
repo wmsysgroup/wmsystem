@@ -69,10 +69,10 @@ function sumall(){
 				<td width="100" align="center">${ins.inid} </td>
 				<td width="100" align="center">${ins.bgname}</td>
 				<td width="100" align="center">${ins.number}</td>
-				<td width="100" align="center">单价</td>
-				<td width="100" align="center">进货日期</td>
-				<td width="100" align="center">分级</td>
-				<td width="100" align="center">产地</td>
+				<td width="100" align="center">${ins.bgprice}</td>
+				<td width="100" align="center">${ins.pldate}</td>
+				<td width="100" align="center">${ins.sysvalue}</td>
+				<td width="100" align="center">${ins.bgchandi}</td>
 				
 			</tr>
 			</c:forEach>

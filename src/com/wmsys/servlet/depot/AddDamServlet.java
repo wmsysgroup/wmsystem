@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.tools.Tool;
 
 import com.wmsys.services.depot.impl.InBoundServImpl;
@@ -34,13 +35,17 @@ public class AddDamServlet extends HttpServlet
 		String val[] = null;
 		Map<String, Object> dto = new HashMap<>();
 				
+		//获取用户ID
+		HttpSession session = request.getSession(); 
+		Map<String,String> user=(Map<String, String>) session.getAttribute("USERINFO");
+		
 		for(Entry<String,String[]> entry:entrySet) 
 		{
 			val = entry.getValue();
 			dto.put(entry.getKey(),val[0]);
 		}		
 		dto.put("gdid", Tools.listno("C"));
-		dto.put("gdprincipal", "120");
+		dto.put("gdprincipal", user.get("uaccount"));
 		
 		InBoundServImpl ibs=new InBoundServImpl();
 		ibs.setMapDto(dto);

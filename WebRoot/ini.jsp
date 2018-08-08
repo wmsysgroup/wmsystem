@@ -22,10 +22,10 @@
 				<tr>
 					
 					<td width="100" align="center">${ins.plid}</td>
-					<td width="100" align="center">大米名称</td>
-					<td width="100" align="center">数量</td>
-					<td width="100" align="center">负责人</td>
-					<td width="100" align="center">进货日期</td>
+					<td width="100" align="center">${ins.bgname}</td>
+					<td width="100" align="center">${ins.plquantity}</td>
+					<td width="100" align="center">${ins.plsupplier}</td>
+					<td width="100" align="center">${ins.pldate}</td>
 					<td width="100" align="center"><button type="submit" name="next"  formaction="<%=path%>/InbAddServlet?plid=${ins.plid }">入库</button></td>
 				</tr>
 			</c:forEach>

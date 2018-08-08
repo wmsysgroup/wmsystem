@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.mywq.util.LabelValueBean;
 
@@ -30,12 +31,17 @@ public class OrderServlet extends HttpServlet {
         String val[] = null;
         Map<String, Object> dto = new HashMap<>();
 
+      //获取用户ID
+        HttpSession session = request.getSession(); 
+      	Map<String,String> user=(Map<String, String>) session.getAttribute("USERINFO");
+        
+        
         for(Entry<String,String[]> entry:entrySet)
         {
             val = entry.getValue();
             dto.put(entry.getKey(),val[0]);
         }
-        dto.put("plprincipal", "1");
+        dto.put("plprincipal",user.get("uaccount"));
         services.setDto(dto);
 
         try
