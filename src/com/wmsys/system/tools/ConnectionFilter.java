@@ -24,7 +24,12 @@ public class ConnectionFilter extends HttpServlet implements Filter
 	{
 			try
 			{
-				
+				/**
+				 * A1010.jsp---查询---a1011.html-------A1010ServicesImpl.query()
+				 *                      |
+				 *                      |
+				 *                    A1010.jsp  
+				 */
 				//过滤链---将请求向目标地址进行传递
 				chain.doFilter(request, response);
 			}

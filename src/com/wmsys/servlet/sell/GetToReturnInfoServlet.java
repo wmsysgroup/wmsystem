@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 从销售表单获取相关待退货产品所需信息
  * Servlet implementation class GetToReturnInfoServlet
  */
 @WebServlet("/GetToReturnInfo.html")

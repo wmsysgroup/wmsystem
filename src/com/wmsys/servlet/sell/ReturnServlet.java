@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 添加退货表单
  * Servlet implementation class ReturnServlet
  */
 @WebServlet("/Return.html")
@@ -23,7 +22,7 @@ public class ReturnServlet extends BaseServlet {
 			//1.获取页面数据
 			Map<String,Object> dto=this.createDto(request);
 			SellServicesImpl services=new SellServicesImpl(dto);
-			//调用添加退货表单方法
+			//调用查询方法
 			services.addReturnList();
 			request.setAttribute("msg", "提交成功!");
 		}
