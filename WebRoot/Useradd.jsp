@@ -41,6 +41,12 @@ ${msg }
   </td>
   </tr>
   <tr>
+  <td>密码</td>
+  <td><input name="upassword" type="password" ></td>
+  <td></td>
+  <td></td>
+  </tr>
+  <tr>
   <td>备注</td>
   <td colspan="3">
       <e:textarea rows="5" cols="65" name="remarks" defval="${ins.remarks }"/>
