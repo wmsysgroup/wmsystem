@@ -12,9 +12,9 @@ import java.text.SimpleDateFormat;
 
 import com.wmsys.system.db.DBUtils;
 import com.wmsys.system.tools.Tools;
-import com.wmsys.services.support.JdbcServicesSupport;
+import com.wmsys.services.support.SellServicesSupport;
 
-public final class SellServicesImpl extends JdbcServicesSupport 
+public final class SellServicesImpl extends SellServicesSupport 
 {
 	 Date date = new Date();//获得系统时间.
 	//将时间格式转换成符合要求的格式
@@ -24,26 +24,6 @@ public final class SellServicesImpl extends JdbcServicesSupport
 	{
 		super(dto);
 	}
-	
-	
-//	/**
-//	 * 批处理获取待销售产品数额总量
-//	 * @return
-//	 * @throws Exception
-//	 */
-//	public List<Map<String, String>> getQuantity()throws Exception
-//	{
-//		//1.定义SQL语句
-//		StringBuilder sql=new StringBuilder()
-//		.append("select o.outid,o.outquantity")
-//		.append("   from outboundlist o")
-//		.append(" where outid=?")
-//		;
-//		//2.组织数据
-//		Object args[]=this.getArray("idlist");
-//		return this.queryByID(sql.toString(), args);
-//		//执行
-//	}
 	
 	/**
 	 * 事务方法处理修改出货表单状态和添加销售表单
@@ -79,7 +59,7 @@ public final class SellServicesImpl extends JdbcServicesSupport
 		//1.定义SQL语句
 		StringBuilder sql=new StringBuilder()
 		.append("update outboundList")
-		.append("   set outstate=0")
+		.append("   set outstate=1")
 		.append(" where outid=?")
 		;
 		//2.组织数据
@@ -151,10 +131,15 @@ public final class SellServicesImpl extends JdbcServicesSupport
 		
 		//2.拼接SQL语句
 		StringBuilder sql=new StringBuilder()
-				.append("select o.outid,o.outnumber,b.bgname,b.bglevel,b.bgtype,b.bgchandi,b.bgprice,o.outquantity")
-				.append("  from basicGoods b,outboundList o")
-				.append(" where b.bgnumber= o.outnumber ")
-				.append("and o.outstate=1")
+				.append("select o.outid,o.outnumber,b.bgname,sc2.sysvalue as type,sc4.sysvalue as level,b.bgchandi,b.bgprice,o.outquantity")
+				.append("  from basicGoods b,outboundList o,")
+				.append("(select sc1.sysvalue,sc1.syscode")
+				.append(" from syscode sc1 where sc1.sysname='bgtype') sc2,")
+				.append("(select sc3.sysvalue,sc3.syscode")
+				.append(" from syscode sc3 where sc3.sysname='bglevel') sc4")
+				.append(" where b.bgnumber= o.outnumber")
+				.append(" and b.bgtype=sc2.syscode and b.bglevel=sc4.syscode")
+				.append(" and o.outstate=2")
 		;
 		
 		List<Object> paramList=new ArrayList<>(20);
@@ -227,8 +212,8 @@ public final class SellServicesImpl extends JdbcServicesSupport
 //		}
 		if(this.isNotNull(bgname))
 		{
-			sql.append(" and b.bgname=?");
-			paramList.add(bgname);
+			sql.append(" and b.bgname like ?");
+			paramList.add("%"+bgname+"%");
 		}
 		if(this.isNotNull(bsdate))
 		{
@@ -260,9 +245,14 @@ public final class SellServicesImpl extends JdbcServicesSupport
 	public final Map<String,String> queryForOut()throws Exception{
 		//1.定义SQL语句
 				StringBuilder sql=new StringBuilder()
-						.append("select b.bgname,b.bgnumber,b.bglevel,b.bgchandi,b.bgtype,b.bgexp,o.outquantity")
-						.append("  from outboundList o,basicGoods b")
+						.append("select b.bgname,b.bgnumber,sc2.sysvalue as type,sc4.sysvalue as level,b.bgchandi,b.bgexp,o.outquantity,b.bgprice")
+						.append("  from outboundList o,basicGoods b,")
+						.append("(select sc1.sysvalue,sc1.syscode")
+						.append(" from syscode sc1 where sc1.sysname='bgtype') sc2,")
+						.append("(select sc3.sysvalue,sc3.syscode")
+						.append(" from syscode sc3 where sc3.sysname='bglevel') sc4")
 						.append(" where b.bgnumber= o.outnumber")
+						.append(" and b.bgtype=sc2.syscode and b.bglevel=sc4.syscode")
 						.append(" and o.outid=?")
 				;
 				//2.组织数据
@@ -279,9 +269,14 @@ public final class SellServicesImpl extends JdbcServicesSupport
 	public final Map<String,String> queryForSale()throws Exception{
 		//1.定义SQL语句
 				StringBuilder sql=new StringBuilder()
-						.append("select s.sid,b.bgname,s.sprice,b.bglevel,b.bgtype,s.spurchaser,s.snumber")
-						.append("  from salesList s,basicGoods b")
+						.append("select s.sid,s.snumber,b.bgname,s.sprice,sc2.sysvalue as type,sc4.sysvalue as level,s.spurchaser")
+						.append(" from salesList s,basicGoods b,")
+						.append("(select sc1.sysvalue,sc1.syscode")
+						.append(" from syscode sc1 where sc1.sysname='bgtype') sc2,")
+						.append("(select sc3.sysvalue,sc3.syscode")
+						.append(" from syscode sc3 where sc3.sysname='bglevel') sc4")
 						.append(" where s.snumber=b.bgnumber")
+						.append(" and b.bgtype=sc2.syscode and b.bglevel=sc4.syscode")
 						.append(" and s.sid=?")
 				;
 				//2.组织数据

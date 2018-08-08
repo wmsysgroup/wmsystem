@@ -9,13 +9,25 @@ String path=request.getContextPath();
 <html>
 <head>
 <title>产品销售信息</title>
+<script type="text/javascript">  
+function beforeSubmit(myform01){   
+	if(myform01.squantity.value!="${rows.outquantity }"
+			&& myform01.remarks.value=='')
+	{    
+			alert('备注不能为空');     
+			myform01.remarks.focus();     
+			return false;    
+	}
+	return true;  
+}
+</script>
 </head>
 <body>
 	${msg}
 	<br>
 	<br>
 	<!-- 表达式 -->
-	<form id="myform01" action="<%=path%>/Sell.html" method="post">
+	<form id="myform01" onSubmit="return beforeSubmit(this);" action="<%=path%>/Sell.html" method="post">
 		<!-- 显示获取信息 -->
 		<table border="0" width="50%" align="center">
 			<caption>
@@ -23,13 +35,13 @@ String path=request.getContextPath();
 				<hr width="160">
 			</caption>
 			<tr style="visibility:hidden">
+				<td>出货流水号</td>
 				<td>
-					<!-- 出货流水号 --> 
 					<e:text name="outid"/>
 				</td>
 			</tr>
 			<tr>
-				<td>货物名称</td>
+				<td>产品名称</td>
 				<td><e:text name="bgname" defval="${rows.bgname }"
 						readonly="true" /></td>
 				<td>编号</td>
@@ -38,7 +50,7 @@ String path=request.getContextPath();
 			</tr>
 			<tr>
 				<td>分级</td>
-				<td><e:text name="bglevel" defval="${rows.bglevel }"
+				<td><e:text name="level" defval="${rows.level }"
 						readonly="true" /></td>
 				<td>产地</td>
 				<td><e:text name="bgchandi" defval="${rows.bgchandi }"
@@ -46,7 +58,7 @@ String path=request.getContextPath();
 			</tr>
 			<tr>
 				<td>种类</td>
-				<td><e:text name="bgtype" defval="${rows.bgtype }"
+				<td><e:text name="type" defval="${rows.type }"
 						readonly="true" /></td>
 				<td>保质期</td>
 				<td><e:text name="bgexp" defval="${rows.bgexp }"
@@ -67,15 +79,15 @@ String path=request.getContextPath();
 			<tr></tr>
 			<tr>
 				<td>数量</td>
-				<td><e:text name="squantity" defval="${rows.outquantity }" readonly="true" /></td>
+				<td><e:text name="squantity" defval="${rows.outquantity }" required="true"/></td>
 				<td>购买方</td>
 				<td><e:text name="spurchaser" required="true" /></td>
 			</tr>
 			<tr>
-				<td>售价/斤</td>
-				<td><e:text name="sprice" required="true" /></td>
+				<td>售价/斤(￥)</td>
+				<td><e:text name="sprice" defval="${rows.bgprice }" required="true"/></td>
 				<td>备注</td>
-				<td><e:text name="remarks"/></td>
+				<td><e:text name="remarks" /></td>
 			</tr>
 		</table>
 		<!-- 功能按钮 -->

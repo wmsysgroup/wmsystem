@@ -45,20 +45,20 @@ String path=request.getContextPath();
 				<hr width="160">
 			</caption>
 			<tr>
-				<td colspan="3">查询条件</td>
+				<td colspan="6">查询条件</td>
 			</tr>
 			<tr>
 				<td>产品名称</td>
 				<td><e:text name="pbgname" autofocus="true" /></td>
 				<td>分级</td>
-				<td><e:select name="pbglevel" value="1:1,2:2,3:3,==不限==:''"
+				<td><e:select name="pbglevel" value="一级:1,二级:2,三级:3,特级:4,==不限==:''"
 						header="true" /></td>
-				<td>单价</td>
+				<td>单价(￥)</td>
 				<td><e:text name="pbgprice" autofocus="true" /></td>
 			</tr>
 			<tr>
 				<td>种类</td>
-				<td><e:select name="pbgtype" value="1:1,2:2,3:3,==不限==:''"
+				<td><e:select name="pbgtype" value="粳米:1,五常米:2,香米:3,丝苗米:4,籼米:5,==不限==:''"
 						header="true" /></td>
 				<td>数量</td>
 				<td><e:text name="poutquantity" autofocus="true" /></td>
@@ -66,14 +66,14 @@ String path=request.getContextPath();
 		</table>
 		<!-- 数据迭代 -->
 		<table border="1" width="95%" align="center">
-			<tr>
+			<tr align="center">
 				<td>出库流水号</td>
 				<td>产品编号</td>
 				<td>名称</td>
 				<td>分级</td>
 				<td>种类</td>
 				<td>产地</td>
-				<td>单价</td>
+				<td>单价（￥）</td>
 				<td>数量</td>
 				<td>操作</td>
 			</tr>
@@ -84,8 +84,8 @@ String path=request.getContextPath();
 							<td>${ins.outid }</td>
 							<td>${ins.outnumber }</td>
 							<td>${ins.bgname }</td>
-							<td>${ins.bglevel }</td>
-							<td>${ins.bgtype }</td>
+							<td>${ins.level }</td>
+							<td>${ins.type }</td>
 							<td>${ins.bgchandi }</td>
 							<td>${ins.bgprice }</td>
 							<td>${ins.outquantity }</td>

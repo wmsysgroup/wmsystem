@@ -18,7 +18,7 @@ String path=request.getContextPath();
     		 submit();
     	 }
      } 
-   </script>
+</script>
 </head>
 <body>
 	${msg }
@@ -36,8 +36,7 @@ String path=request.getContextPath();
 				<td>销售流水号</td>
 				<td><e:text name="saleid" autofocus="true" /></td>
 				<td>产品名称</td>
-				<td><e:select name="bgname" value="糯米:糯米,粳米:粳米,==不限==:''"
-						header="true" /></td>
+				<td><e:text name="bgname" autofocus="true"/></td>
 			</tr>
 			<tr>
 				<td>日期</td>
@@ -48,9 +47,9 @@ String path=request.getContextPath();
 		</table>
 		<!-- 数据迭代 -->
 		<table border="1" width="95%" align="center">
-			<tr>
+			<tr align="center">
 				<td>销售流水号</td>
-				<td>货物编号</td>
+				<td>产品编号</td>
 				<td>货物名称</td>
 				<td>销售日期</td>
 				<td>购买方</td>

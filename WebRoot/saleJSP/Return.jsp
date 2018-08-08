@@ -31,24 +31,24 @@ String path=request.getContextPath();
 						readonly="true" /></td>
 			</tr>
 			<tr>
-				<td>售价</td>
+				<td>售价/斤(￥)</td>
 				<td><e:text name="sprice" defval="${row.sprice }"
 						readonly="true" /></td>
 				<td>分级</td>
-				<td><e:text name="bglevel" defval="${row.bglevel }"
+				<td><e:text name="level" defval="${row.level }"
 						readonly="true" /></td>
 			</tr>
 			<tr>
 				<td>种类</td>
-				<td><e:text name="bgtype" defval="${row.bgtype }"
+				<td><e:text name="type" defval="${row.type }"
 						readonly="true" /></td>
 				<td>购买方</td>
 				<td><e:text name="spurchaser" defval="${row.spurchaser }"
 						readonly="true" /></td>
 			</tr>
 			<tr>
+				<td>货物编号</td>
 				<td>
-					<!-- 货物编号 --> 
 					<e:text name="rnumber" defval="${row.snumber }"
 						style="visibility:hidden" />
 				</td>
