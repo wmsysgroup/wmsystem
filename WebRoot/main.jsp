@@ -90,7 +90,7 @@
 							<li><a href="<%=path%>/${menu.mopenpath}" target="VIEW"><i class="icon-folder-close-alt"></i><span class="hidden-tablet" >${menu.mname }</span></a></li>	
 						</c:forEach>
 					</c:if>
-					
+					<li><a href="login.jsp" ><i class="icon-folder-close-alt"></i><span class="hidden-tablet" >×¢ÏúÓÃ»§</span></a></li>
 					
 					</ul>
 				</div>

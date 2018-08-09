@@ -68,7 +68,7 @@ public class AddDamServlet extends HttpServlet
 			ibs.updatema();
 			
 		} catch (Exception e) {
-			
+			request.setAttribute("msg", "网络故障，添加失败！！！！");
 			e.printStackTrace();
 		}
 		request.setAttribute("msg", "添加成功！！！！");

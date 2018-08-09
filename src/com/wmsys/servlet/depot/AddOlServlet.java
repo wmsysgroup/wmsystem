@@ -114,7 +114,7 @@ public class AddOlServlet extends HttpServlet
 	        	dto.put("outdate", Tools.getDate());
 	        	dto.put("outid", Tools.listno("E"));
 	        	dto.put("outnumber", request.getParameter("outnumber"));
-	        	dto.put("outprincipal", "zyl");
+	        	dto.put("outprincipal", user.get("uaccount"));
 	        	dto.put("number", litt.get(2));
 	        	ibs.setMapDto(dto);
 	        	ibs.insertout();
@@ -124,6 +124,7 @@ public class AddOlServlet extends HttpServlet
 	        
 			
 		} catch (Exception e) {
+			request.setAttribute("msg", "Õ¯¬Áπ ’œ£°");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

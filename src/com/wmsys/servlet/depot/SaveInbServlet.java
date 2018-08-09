@@ -63,9 +63,7 @@ public class SaveInbServlet extends HttpServlet
 			ibs.indetp();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			e.printStackTrace();}
 		request.getRequestDispatcher("/InListServlet").forward(request, response);
 	}
 
