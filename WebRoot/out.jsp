@@ -52,7 +52,7 @@ function sumall(){
 	<body>
 	${msg }
 	<div style="margin:0 auto;width:70%;padding-top:60px">
-	
+	<div style="height:30px">
 		<form  action="<%=path %>/OutListServlet" method="post">
 			<div style="float:left;display:inline-block">
 				<span>大米编号：</span><input class="form-control" style="width:150px;display:inline-block" name="bgnumber" type="text" value="${instad}">
@@ -68,7 +68,7 @@ function sumall(){
 		<input type="hidden" name="outnumber" value="${instad}">
 		<button type="submit" class="btn btn-info" >提交</button>
 		</div>
-		
+		</div>
 		<table class="table table-striped table-bordered table-hover table-condensed" style="width:100%;text-align:center">
 		
 		<tr>

@@ -55,7 +55,7 @@ public class OrderServlet extends HttpServlet {
             request.setAttribute("msg", msg);
             e.printStackTrace();
         }
-        request.getRequestDispatcher("/Order.jsp").forward(request, response);
+        request.getRequestDispatcher("/PurchaseList.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

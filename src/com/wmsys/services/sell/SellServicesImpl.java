@@ -16,8 +16,8 @@ import com.wmsys.services.support.SellServicesSupport;
 
 public final class SellServicesImpl extends SellServicesSupport 
 {
-	 Date date = new Date();//»ñµÃÏµÍ³Ê±¼ä.
-	//½«Ê±¼ä¸ñÊ½×ª»»³É·ûºÏÒªÇóµÄ¸ñÊ½
+	 Date date = new Date();//ï¿½ï¿½ï¿½ÏµÍ³Ê±ï¿½ï¿½.
+	//ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ê½×ªï¿½ï¿½ï¿½É·ï¿½ï¿½ï¿½Òªï¿½ï¿½Ä¸ï¿½Ê½
 	 String nowTime = new SimpleDateFormat("yyyy-MM-dd").format(date);
 
 	public SellServicesImpl(Map<String, Object> dto) 
@@ -26,7 +26,7 @@ public final class SellServicesImpl extends SellServicesSupport
 	}
 	
 	/**
-	 * ÊÂÎñ·½·¨´¦ÀíÐÞ¸Ä³ö»õ±íµ¥×´Ì¬ºÍÌí¼ÓÏúÊÛ±íµ¥
+	 * ï¿½ï¿½ï¿½ñ·½·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Ä³ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û±ï¿½
 	 * @return
 	 * @throws Exception
 	 */
@@ -49,79 +49,79 @@ public final class SellServicesImpl extends SellServicesSupport
 	
 	
 	/**
-	 * ÐÞ¸Ä³ö»õ±íµ¥×´Ì¬
+	 * ï¿½Þ¸Ä³ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 	 * @return
 	 * @throws Exception
 	 */
 	protected void appendModifySql()throws Exception
 	{
 		//this.showDto();
-		//1.¶¨ÒåSQLÓï¾ä
+		//1.ï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ï¿½
 		StringBuilder sql=new StringBuilder()
 		.append("update outboundList")
-		.append("   set outstate=1")
+		.append("   set outstate=0")
 		.append(" where outid=?")
 		;
-		//2.×éÖ¯Êý¾Ý
+		//2.ï¿½ï¿½Ö¯ï¿½ï¿½ï¿½ï¿½
 		Object args[]={this.get("outid")};
-		//Ìí¼Ó
+		//ï¿½ï¿½ï¿½
 		this.appendSql(sql.toString(), args);
 	}
 	
 	
 	/**
-	 * Ìí¼ÓÏúÊÛ±íµ¥
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û±ï¿½
 	 * @return
 	 * @throws Exception
 	 */
 	public void appendSalesListSql()throws Exception
 	{
-		//1.¶¨ÒåSQLÓï¾ä
+		//1.ï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ï¿½
 		StringBuilder sql=new StringBuilder()
 		.append("insert into salesList(sid,outid,snumber,sprice,squantity,spurchaser,sdate,sprincipal,remarks)")
 		.append(" values(?,?,?,?,?,?,?,?,?)")		
 		;
-		//2.×éÖ¯Êý¾Ý
+		//2.ï¿½ï¿½Ö¯ï¿½ï¿½ï¿½ï¿½
 		Object args[]={
 				Tools.listno("C"),this.get("outid"),this.get("snumber"),this.get("sprice"),this.get("squantity"),
 				this.get("spurchaser"),nowTime.toString(),this.get("sprincipal"),this.get("remarks")
 		};
-		//3.Ìí¼Ó
+		//3.ï¿½ï¿½ï¿½
 		this.appendSql(sql.toString(), args);
 	}
 	
 	
 	/**
-	 * Ìí¼ÓÍË»õ±íµ¥
+	 * ï¿½ï¿½ï¿½ï¿½Ë»ï¿½ï¿½ï¿½
 	 * @return
 	 * @throws Exception
 	 */
 	public void addReturnList()throws Exception
 	{
-		//1.¶¨ÒåSQLÓï¾ä
+		//1.ï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ï¿½
 		StringBuilder sql=new StringBuilder()
 		.append("insert into returnList(rid,sid,rnumber,rquantity,rdate,rprincipal,remarks) ")
 		.append(" values(?,?,?,?,?,?,?)")		
 		;
-		//2.×éÖ¯Êý¾Ý
+		//2.ï¿½ï¿½Ö¯ï¿½ï¿½ï¿½ï¿½
 		Object args[]={
 				Tools.listno("D"),this.get("sid"),this.get("rnumber"),this.get("rquantity"),
-				nowTime.toString(),"´ýÌí",this.get("remarks")
+				nowTime.toString(),"ï¿½ï¿½ï¿½ï¿½",this.get("remarks")
 		};
-		//3.Ö´ÐÐ
+		//3.Ö´ï¿½ï¿½
 		this.executeUpdate(sql.toString(), args);
 	}
 	
 	
 	
 	/**
-	 * ³ö»õ±íµ¥Êý¾Ý²éÑ¯
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½Ñ¯
 	 * @return
 	 * @throws Exception
 	 */
 	public List<Map<String,String>> queryForOutList()throws Exception
 	{
-		//1.´ÓDTO»¹Ô­²éÑ¯Ìõ¼þ
+		//1.ï¿½ï¿½DTOï¿½ï¿½Ô­ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		Object bgname=this.get("pbgname");
 		Object bglevel=this.get("pbglevel");
 		Object bgprice=this.get("pbgprice");
@@ -129,7 +129,7 @@ public final class SellServicesImpl extends SellServicesSupport
 		Object outquantity=this.get("poutquantity");
 		int sum=5;
 		
-		//2.Æ´½ÓSQLÓï¾ä
+		//2.Æ´ï¿½ï¿½SQLï¿½ï¿½ï¿½
 		StringBuilder sql=new StringBuilder()
 				.append("select o.outid,o.outnumber,b.bgname,sc2.sysvalue as type,sc4.sysvalue as level,b.bgchandi,b.bgprice,o.outquantity")
 				.append("  from basicGoods b,outboundList o,")
@@ -171,18 +171,18 @@ public final class SellServicesImpl extends SellServicesSupport
 		}
 		//sql.append(" limit  10");
 		
-		//Ö´ÐÐ
+		//Ö´ï¿½ï¿½
 		return this.queryForList(sql.toString(), paramList.toArray());
 	}
 	
 	/**
-	 * ÏúÊÛ±íµ¥Êý¾Ý²éÑ¯
+	 * ï¿½ï¿½ï¿½Û±ï¿½ï¿½ï¿½ï¿½Ý²ï¿½Ñ¯
 	 * @return
 	 * @throws Exception
 	 */
 	public List<Map<String,String>> queryForSaleList()throws Exception
 	{
-		//1.´ÓDTO»¹Ô­²éÑ¯Ìõ¼þ
+		//1.ï¿½ï¿½DTOï¿½ï¿½Ô­ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		Object sid=this.get("saleid");
 //		Object bgnumber=this.get("bgnumber");
 		Object bgname=this.get("bgname");
@@ -191,7 +191,7 @@ public final class SellServicesImpl extends SellServicesSupport
 		Object spurchaser=this.get("spurchaser");
 		int sum=5;
 		
-		//2.Æ´½ÓSQLÓï¾ä
+		//2.Æ´ï¿½ï¿½SQLï¿½ï¿½ï¿½
 		StringBuilder sql=new StringBuilder()
 				.append("select s.sid,b.bgnumber,b.bgname,s.sdate,s.spurchaser")
 				.append("  from salesList s,basicGoods b")
@@ -232,18 +232,18 @@ public final class SellServicesImpl extends SellServicesSupport
 		}
 		//sql.append(" limit  10");
 		
-		//Ö´ÐÐ
+		//Ö´ï¿½ï¿½
 		return this.queryForList(sql.toString(), paramList.toArray());
 	}
 
 	
 	/**
-	 * ³ö»õ±íµ¥Êý¾Ýµ¥Ò»²éÑ¯
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½Ò»ï¿½ï¿½Ñ¯
 	 * @return
 	 * @throws Exception
 	 */
 	public final Map<String,String> queryForOut()throws Exception{
-		//1.¶¨ÒåSQLÓï¾ä
+		//1.ï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ï¿½
 				StringBuilder sql=new StringBuilder()
 						.append("select b.bgname,b.bgnumber,sc2.sysvalue as type,sc4.sysvalue as level,b.bgchandi,b.bgexp,o.outquantity,b.bgprice")
 						.append("  from outboundList o,basicGoods b,")
@@ -255,19 +255,19 @@ public final class SellServicesImpl extends SellServicesSupport
 						.append(" and b.bgtype=sc2.syscode and b.bglevel=sc4.syscode")
 						.append(" and o.outid=?")
 				;
-				//2.×éÖ¯Êý¾Ý
+				//2.ï¿½ï¿½Ö¯ï¿½ï¿½ï¿½ï¿½
 				Object args[]={this.get("outid")};
-				//Ö´ÐÐ
+				//Ö´ï¿½ï¿½
 				return this.queryForMap(sql.toString(), args);
 	}
 
 	/**
-	 * ÏúÊÛ±íµ¥µ¥Ò»Êý¾Ý²éÑ¯
+	 * ï¿½ï¿½ï¿½Û±ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ý²ï¿½Ñ¯
 	 * @return
 	 * @throws Exception
 	 */
 	public final Map<String,String> queryForSale()throws Exception{
-		//1.¶¨ÒåSQLÓï¾ä
+		//1.ï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ï¿½
 				StringBuilder sql=new StringBuilder()
 						.append("select s.sid,s.snumber,b.bgname,s.sprice,sc2.sysvalue as type,sc4.sysvalue as level,s.spurchaser")
 						.append(" from salesList s,basicGoods b,")
@@ -279,20 +279,20 @@ public final class SellServicesImpl extends SellServicesSupport
 						.append(" and b.bgtype=sc2.syscode and b.bglevel=sc4.syscode")
 						.append(" and s.sid=?")
 				;
-				//2.×éÖ¯Êý¾Ý
+				//2.ï¿½ï¿½Ö¯ï¿½ï¿½ï¿½ï¿½
 				Object args[]={this.get("sid")};
-				//Ö´ÐÐ
+				//Ö´ï¿½ï¿½
 				return this.queryForMap(sql.toString(), args);
 	}
 	
 //	/**
-//	 * ¸ù¾Ý²»Í¬Á÷Ë®ºÅ²éÑ¯Êý¾Ý
+//	 * ï¿½ï¿½ï¿½Ý²ï¿½Í¬ï¿½ï¿½Ë®ï¿½Å²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 //	 * @return
 //	 * @throws Exception
 //	 */
 //	protected final List<Map<String,String>> queryByID(final String sql,final Object...args)throws Exception
 //	{
-//		//1.¶¨ÒåJDBC½Ó¿Ú
+//		//1.ï¿½ï¿½ï¿½ï¿½JDBCï¿½Ó¿ï¿½
 //		PreparedStatement pstm=null;
 //		ResultSet rs=null;
 //		try

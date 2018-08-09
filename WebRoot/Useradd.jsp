@@ -40,7 +40,7 @@ ${msg }
   <e:date name="udate" style="height:30px"  required="true" defval="${ins.udate}"/>
   </td>
   <td>工种</td>
-  <td><e:select style="width:206px" value="进货人员:1,销售人员:2,库房人员:3,管理人员:0" name="utype" defval = "${empty param.uaccount?'1':ins.utype }"/>
+  <td><e:select style="width:206px" value="进货人员:1,销售人员:2,库房人员:3,管理人员:4" name="utype" defval = "${empty param.uaccount?'1':ins.utype }"/>
   </td>
   </tr>
   <tr>

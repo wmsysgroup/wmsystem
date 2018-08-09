@@ -52,6 +52,9 @@ String path=request.getContextPath();
 			</tr>
 		</table>
 		</div>
+		<div style = "float:right;padding-bottom:16px">
+        	<button type="submit" class="btn btn-info" >查询</button>
+        </div>
 		<!-- 数据迭代 -->
 		<table class="table table-striped table-bordered table-hover table-condensed" style="width:100%;text-align:center">
 			<tr align="center">
@@ -89,9 +92,7 @@ String path=request.getContextPath();
 				</c:otherwise>
 			</c:choose>
 		</table>
-		   <div style = "float:right">
-        	<button type="submit" class="btn btn-info" >查询</button>
-        </div>
+
 		</div>
 	</form>
 </body>

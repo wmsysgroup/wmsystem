@@ -65,6 +65,10 @@ ${msg }
 
   </table>
   </div>
+   <div style = "float:right;padding-bottom:16px">
+        	<button type="submit" class="btn btn-info" name="next">查询</button>
+        	<button type="submit" class="btn btn-info" name="next" formaction="<%=path%>/AddRice.jsp">添加</button>
+        </div>
   <!-- 数据迭代 -->
  <table class="table table-striped table-bordered table-hover table-condensed" style="width:100%;text-align:center">
    <tr>
@@ -117,10 +121,7 @@ ${msg }
    </c:choose>
  </table>
  <!-- 功能按钮 -->
-  <div style = "float:right">
-        	<button type="submit" class="btn btn-info" name="next">查询</button>
-        	<button type="submit" class="btn btn-info" name="next" formaction="<%=path%>/AddRice.jsp">添加</button>
-        </div>
+ 
  
    </div>
 </form>
